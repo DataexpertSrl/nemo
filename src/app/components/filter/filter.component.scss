@@ -1,0 +1,85 @@
+@import '/src/app/shared/style-varibale.scss';
+
+.filter-sidebar {
+  background-color: white;
+  height: 100%;
+  padding: 0rem 1.5rem;
+
+  .close-and-clean {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.8rem 0.8rem;
+    color: $dark-gray;
+    font-weight: 500;
+
+    .close {
+      text-transform: uppercase ;
+      fa-icon {
+        margin-right: 0.5rem;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .clean {
+      color: $accent-color;
+      &:hover {
+        cursor: pointer;
+        color: $accent-color-dark;
+      }
+    }
+
+  }
+
+  .list-container {
+    width: 100%;
+    .accordion {
+      box-shadow: none ;
+      .accordion-item {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        .accordion-header {
+          box-shadow: none;
+          .accordion-button {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.2rem 0.8rem 0.5rem 0.8rem;
+            color: $dark-gray;
+            background-color: transparent ;
+            border: none;
+            box-shadow: none ;
+            border-top: solid 0.5px $light-gray;
+            .accordion-title {
+              text-transform: capitalize;
+              font-weight: 500;
+              font-size: 1.2rem;
+            }
+          }
+          .accordion-button::after {
+            display: none;
+          }
+        }
+
+        .accordion-body {
+          padding-left: 0.8rem !important;
+          padding-right: 0.8rem !important;
+          .checkbox-list {
+
+          }
+          .selectd-range {
+            color: $dark-gray;
+            margin-bottom: -0.5rem;
+            span {
+              color: $accent-color !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

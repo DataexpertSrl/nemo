@@ -1,0 +1,42 @@
+@import '/src/app/shared/style-varibale.scss';
+
+.quantity-button {
+  .click-disabled:hover {
+    cursor: not-allowed !important;
+  }
+  // width: 10rem;
+  .quantity-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .minus {
+    border-radius: 0;
+    border-color: $light-gray;
+    border-right: none;
+    background-color: white;
+  }
+  .qty-input {
+    border-color: $light-gray;
+    color: $dark-gray;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    background-color: white;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    &:focus {
+      box-shadow: none;
+    }
+    &:active {
+      box-shadow: none;
+    }
+  }
+  .more {
+    border-radius: 0;
+    border-color: $light-gray;
+    border-left: none;
+    background-color: white;
+  }
+}

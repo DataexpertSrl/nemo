@@ -1,0 +1,98 @@
+@import '/src/app/shared/style-varibale.scss';
+
+.conatiner {
+
+  #home_carousel {
+
+    .carousel-inner {
+
+      .carousel-item {
+
+        .slider-images {
+          width: 100%;
+          height: 100%;
+        }
+
+        .carousel-caption {
+          text-align: left;
+          top: 25%;
+          padding-left: 4rem;
+          .carousel_sub_title {
+            text-transform: uppercase;
+            color: $accent-color;
+            font-weight: 350;
+            font-size: 1.2rem;
+          }
+          .carousel_title {
+            color: $black;
+            font-weight: 400;
+            font-size: 3rem;
+            letter-spacing: -.025em;
+          }
+          .carousel_btn {
+            background-color: transparent;
+            color: $accent-color;
+            border: solid 2px $accent-color;
+            margin-top: 1rem;
+            padding: 0.8rem 1.8rem;
+            text-transform: uppercase;
+
+            &:hover {
+              color: white;
+              background-color: $accent-color;
+            }
+          }
+        }
+
+      }
+
+    }
+
+    .carousel-control {
+        .custom-icon {
+          color: $main-color;
+          font-size: 1.5rem;
+        }
+        .custom-icon:hover {
+          color: $accent-color;
+          cursor: pointer;
+        }
+    }
+  }
+
+}
+
+.product-info-overlay {
+  position: absolute;
+  background: white;
+  padding: 0.2rem 0.5rem;
+  margin-top: 1.2rem;
+  margin-left: 1.2rem;
+  color: $main-color;
+}
+/*
+MEDIA QUERY
+*/
+
+@media screen and (max-width: 770px) {
+  .product-preview-container {
+
+    .filter-btn {
+      text-align: center !important;
+    }
+
+    .filter-shortcut {
+      margin-top: 1rem;
+      justify-content: center !important;
+    }
+  }
+}
+
+
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  height: 45vh;
+  align-items: center;
+}

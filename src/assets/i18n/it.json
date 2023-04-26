@@ -1,0 +1,305 @@
+{
+  "Filters": {
+    "Filters": "Filtri",
+    "Category": "Categoria",
+    "Brand": "Marchio",
+    "Sort": "Ordina per",
+    "Price": "Perzzo",
+    "PriceRange": "Fascia di prezzo"
+  },
+  "Categories": {
+    "Category": "Categoria",
+    "All": "Tutti",
+    "Furniture": "Mobili",
+    "Lighting": "Illuminazione",
+    "Accessories": "Accessori",
+    "Sales": "Sconti"
+  },
+  "Sort": {
+    "Sort": "Ordina per",
+    "latest": "Novità",
+    "lowest_price": "Prezzo: da basso ad alto",
+    "highest_price": "Prezzo: da alto a basso"
+  },
+  "Toolbar": {
+    "Call": "Chiama",
+    "AboutUs": "Chi siamo",
+    "Login": "Login",
+    "MyAccoynt": "Il mio profilo"
+  },
+  "Footer": {
+    "UsefullLink": "Link utili",
+    "AboutNemo": "Riguardo Nemo",
+    "HowToShop": "Come comprare su Nemo",
+    "ContactUs": "Contattaci",
+    "CustomerService": "Servizio Clienti",
+    "PayMethod": "Metodi di pagamento",
+    "MoneyBack": "Soddisfatti o rimborsati!",
+    "Returns": "Resi",
+    "Shipping": "Spedizione",
+    "Terms": "Termini e condizioni",
+    "PrivacyPolicy": "Privacy Policy",
+    "MyAccount": "Il mio Account",
+    "ViewCart": "Vedi Carrello",
+    "MyWishList": "La mia lista dei desideri",
+    "TrackOrder": "Traccia i miei ordini",
+    "Help": "Assistenza",
+    "SignIn": "Registrazione",
+    "LogIn": "Accedi"
+  },
+  "Product": {
+    "Action": {
+      "AddToCart": "Aggiungi al carrello",
+      "Share": "Condividi",
+      "More": "Altri prodotti"
+    },
+    "Info": {
+      "Sale": "Scontato",
+      "OutOfStock": "Esaurito"
+    },
+    "Title": "Lista prodotti",
+    "Subtitle": "Negozio",
+    "QuantityAbbreviation": "Q.ta",
+    "Description": "Descrizione",
+    "Review": {
+      "Reviews": "Recensioni",
+      "DaysAgo": "giorni fa",
+      "Helpful": "Utile",
+      "Unhelpful": "Non utile"
+    },
+    "ShippingReturn": "Spedizioni e Resi",
+    "DeleiveryReturn": {
+      "DeleiveryReturn": "Consegne e resi",
+      "Desc": "Consegniamo in oltre 100 paesi in tutto il mondo. Per tutti i dettagli sulle opzioni di consegna che offriamo, consulta le nostre Informazioni <br>sulla consegna Ci auguriamo che ogni acquisto ti piaccia, ma se hai bisogno di restituire un articolo puoi farlo entro un mese dal ricevimento. <br> Per tutti i dettagli su come effettuare un reso, consulta le nostre informazioni sui resi"
+    },
+    "Recommened": {
+      "Title": "Potrebbero piacerti anche"
+    },
+    "Product": "Prodotto",
+    "NoDescription": "Nessuna descrizione disponibile",
+    "List": "Lista prodotti",
+    "NoProduct": "Nessun prodotto"
+  },
+  "Filter": {
+    "Clear": "Svuota tutti"
+  },
+  "Shared": {
+    "BackToTop": "Torna su",
+    "Of": "di",
+    "GenericError": "Si è verificato un errore durante l'esecuzione della richiesta"
+  },
+  "Products": {},
+  "User": {
+    "SignIn": "Log In",
+    "Login": "Accedi",
+    "Register": "Registrati",
+    "SignUp": "Registrati",
+    "SignUpOk": {
+      "Title": "Registrazione completata",
+      "Text": "Completnti, sei registarto! </br> Ora puoi effettuare l'accesso."
+    },
+    "ForgottenPassword": "Password dimenticata",
+    "EmailForgottenLinkSend": "Una email per il reset della password è stata inviata",
+    "EmailNotExist": "Nessun utente associato a questa email"
+  },
+  "Login": {
+    "EmailNotValid": "Email non valida",
+    "EmailRequired": "Email obbligatoria",
+    "PwdReqired": "Password obbligatoria",
+    "ErrorCredential": "Email o password non corrette",
+    "ErrorSignIn": "Errore durante la registrazione"
+  },
+  "Cart": {
+    "Title": "Carrello",
+    "Price": "Prezzo",
+    "Quantity": "Quantità",
+    "Total": "Totale",
+    "GoCheckout": "Vai al Checkout",
+    "CartTotal": "Totale Carrello",
+    "SubTotal": "Totale parziale",
+    "ChangeAddress": "Modifica indirizzo",
+    "ViewCart": "Vedi carrello",
+    "Checkout": "Checkout",
+    "SuccessfullyAdded": "Aggiunto al carrello",
+    "SuccessfullyRemoved": "Articolo rimosso"
+  },
+  "MyAccount": {
+    "Title": "Il mio profilo",
+    "Orders": "Ordini",
+    "ResetPassowrd": "Modifica Password",
+    "SignOut": "Esci",
+    "Order": {
+      "NoOrders": "Nessun ordine è stato ancora effettuato",
+      "GoShop": "Visualizza prodotti"
+    },
+    "ChangePassowrd": "Modifica Password",
+    "PassowrdForm": {
+      "Old": "Password attuale",
+      "New": "Nuova password",
+      "Confirm": "Conferma la nuova password",
+      "Required": "Campo obbligatorio",
+      "Pattern": "Deve contenere almeno un numero, una maiuscola, una minuscola, nessuno spazio bianco e almeno 8 caratteri",
+      "Mismatch": "La password non corrisponde",
+      "PatternError": "Formato errato"
+    },
+    "PwdChangeOk": "La tua password è stata modificata con successo"
+  },
+  "Error": {
+    "AUTH001": "Manca il client_id",
+    "AUTH002": "Il grant_type deve essere 'password' o 'client_credentials' o 'refresh:token o mancante",
+    "AUTH003": "Manca il client_secret",
+    "AUTH004": "Manca il refresh_token",
+    "AUTH005": "Il tipo di token passato non è corretto per l'operazione richiesta",
+    "AUTH006": "Manca l'email",
+    "AUTH007": "Manca la password",
+    "AUTH008": "Nome utente o password errati",
+    "AUTH009": "Il token di aggiornamento scade",
+    "AUTH010": "Il nome utente esiste già",
+    "AUTH011": "Non autorizzato",
+    "AUTH012": "Nuova password mancante nel campo",
+    "AUTH013": "Campo mancante conferma nuova password",
+    "AUTH014": "Il token della password scade",
+    "AUTH015": "L'email esiste già",
+    "AUTH016": "La password inserita non è corretta",
+    "PROD001": "Prodotto non trovato",
+    "PROD002": "ID prodotto mancante",
+    "PROD003": "La quantità deve essere maggiore di zero",
+    "PROD004": "Prezzo_minimo o prezzo_massimo errato o ordinamento_per",
+    "PROD005": "È possibile richiedere un massimo di 100 prodotti per query",
+    "APP001": "Applicazione non trovata, client_id errato",
+    "GEN": "Si è verificato un errore durante l'esecuzione della richiesta",
+    "SHIP001": "Peso non corretto",
+    "SHIP002": "Prezzo non corretto",
+    "SHIP003": "Codice nazione assente",
+    "SHIP004": "CAP assente",
+    "DATE001": "Formato \"data da\" errato",
+    "DATE002": "Forato \" data a\" errato",
+    "ORDR001": "Ordine non trovato",
+    "PAY002.0": "Il Codice Fiscale non è formalmente corretto",
+    "PAY002.1": "Configurazione non trovata",
+    "PAY002.2": "Il campo Province ha lunghezza di 2 caratteri",
+    "ADDR001": "Indirizzo di fatturazione mancante",
+    "ADDR002": "Classe fiscale mancante",
+    "ADDR003": "Codice fiscale mancante",
+    "ADDR004": "Partita IVA mancante",
+    "ADDR005": "Nome mancante",
+    "ADDR006": "Cognome mancante",
+    "ADDR007": "Manca codice SDI o Email PEC",
+    "ADDR008": "Email mancante",
+    "ADDR009": "Ragione sociale mancante",
+    "ADDR010": "Indirizzo mancante",
+    "ADDR011": "Città mancante",
+    "ADDR012": "Codice postale mancante",
+    "ADDR013": "Codice nazione mancante",
+    "ADDR014": "Provincia mancante"
+  },
+  "Checkout": {
+    "Firstname": "Nome",
+    "LastName": "Cognome",
+    "CompanyName": "Nome e Cognome / Nome azienda",
+    "Optional": "Facoltativo",
+    "Country": "Nazione",
+    "StreetAddress": "Indirizzo",
+    "City": "Città",
+    "State": "Provincia",
+    "Zip": "CAP",
+    "Phone": "Telefono",
+    "Email": "Email",
+    "Notes": "Note",
+    "BillingDetails": "Dettagli di fatturazione",
+    "YourOrder": "Il tuo ordine",
+    "Checkout": "Checkout",
+    "NewAccount": "Crea un nuovo account",
+    "DifferentAddress": "Fattura ad un indirizzo diverso",
+    "StreetAddressInfoPlaceholder": "Appartamenti, suite, unità ecc ...",
+    "StreetAddressPlaceholder": "Numero civico e nome della via",
+    "NotePlaceholder": "Nota sul tuo ordine, ad es. nota speciale per la consegna",
+    "ShipmentDetail": "Dettagli spedizione",
+    "ShippingMethod": "Metodo di spedizione",
+    "PaymentMethod": "Metodo di pagamento",
+    "Company": "Azienda",
+    "PhysicalPerson": "Persona fisica",
+    "EmailPEC": "Email PEC",
+    "SDIorPEC": "Codice SDI o Email PEC obbligatori",
+    "SDI": "Codice SDI",
+    "VATNumber": "Partita IVA",
+    "CF": "Codice Fiscale",
+    "CompanyNameBilling": "Nome azienda",
+    "RequestInvoice": "Emettere fattura",
+    "MaxLength": "Massimo {{legth}} caratteri"
+  },
+  "CheckOut": {
+    "CouponQuestion": "Hai un coupon?",
+    "CouponClick": "Clicca qui per inserire il tuo codice "
+  },
+  "Orders": {
+    "Status": {
+      "OnHold": "In Attesa",
+      "New": "Nuovo",
+      "PartiallyShipped": "Parzialmente spedito",
+      "Shipped": "Spedito",
+      "PartiallyRefunded": "Parzialmente rimborsato",
+      "Refunded": "Rimborsato",
+      "Deleted": "Cancellato",
+      "Failed": "Fallito",
+      "Status": "Stato ordine"
+    },
+    "OrderNumber": "Numero ordine",
+    "OrderDate": "Data ordine",
+    "OrderAmount": "Totale",
+    "Order": "Ordine",
+    "OrderDetail": {
+      "ShiipingInfo": "Dettagli di spedizione",
+      "BillingInfo": "Dettagli di fatturazione",
+      "PaymentMethod": "Metodo di pagamento",
+      "Orderdate": "Creato il",
+      "Total": "Totale",
+      "ProductTotal": "Prezzo dei prodotti",
+      "ShippingTotal": "Spese di spedizione",
+      "Recipeient": "Destinatario",
+      "Address": "Indirizzo",
+      "Zip": "Cap",
+      "Province": "Provincia",
+      "City": "Città",
+      "Phone": "Telefono",
+      "Undefined": "Non definito",
+      "NoProducts": "Nessun prodotto",
+      "Quantity": "Quantità",
+      "RequestOrder": "VIsualizza ordine",
+      "OrderNotFound": "Ordine non trovato"
+    }
+  },
+  "Month": {
+    "0": "Gennaio",
+    "1": "Febbraio",
+    "2": "Marzo",
+    "3": "Aprile",
+    "4": "Maggio",
+    "5": "Giugno",
+    "6": "Luglio",
+    "7": "Agosto",
+    "8": "Settembre",
+    "9": "Ottobre",
+    "10": "Novembre",
+    "11": "Dicembre"
+  },
+  "Order": {
+    "OderDetail": {
+      "EmailRequired": "Per visualizzare l'ordine è necessario inserire l'indirizzo email associato all'ordine"
+    }
+  },
+  "Payment": {
+    "Result": {
+      "NotHandled": "Stato pagamento non getsito",
+      "NotFound": "Stato pagamento non trovato",
+      "Inserted": "Pagamento inserito",
+      "Refused": "Pagamento rifiutato",
+      "Completed": "Pagamento completato",
+      "Refunded": "Pagamento rimborsato",
+      "Deleted": "Pagamento cancellato",
+      "Title": "Stato pagamento",
+      "Msg": "Torna allo shopping",
+      "TryAgain": "Si prega di riporvare"
+    }
+  }
+}

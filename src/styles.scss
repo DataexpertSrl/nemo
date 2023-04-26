@@ -1,0 +1,474 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  overflow-x: hidden
+}
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+@import '/src/app/shared/style-varibale.scss';
+@import '/node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '/node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+// LAYOUT MEDIA QUERY
+
+.custom-container {
+  margin: 2.5% 18.5% 1.5% 18.5%;
+  transition: 0.5s;
+}
+
+@media screen and (max-width: 1240px) {
+  .custom-container {
+    transition: 0.5s;
+    margin: 2.5% 2% 1.5% 2% !important;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .custom-container {
+    transition: 0.5s;
+    margin: 2.5% 10% 1.5% 10% !important;
+  }
+}
+@media screen and (max-width: 1620px) {
+  .custom-container {
+    transition: 0.5s;
+    margin: 2.5% 7% 1.5% 7% !important;
+  }
+}
+
+
+
+// SHARED STYLE
+
+// SWITHC COLOR
+.form-switch {
+  .form-check-input:checked {
+    border-color: $accent-color !important;
+    background-color: $accent-color !important;
+  }
+  .form-check-input:focus {
+    box-shadow: none !important;
+  }
+  .form-check-input:not(:checked):focus {
+    border-color: #bfbfbf !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+  }
+}
+
+// VIRTUAL SCROLL
+.list-container {
+  .cdk-virtual-scroll-content-wrapper {
+    padding: 0.2rem !important;
+  }
+  .scrollable-content {
+    padding: 0.2rem !important;
+  }
+}
+
+.products-container {
+  .scrollable-content {
+    padding: 0.2rem !important;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-0.5 * var(--bs-gutter-x));
+    margin-left: calc(-0.5 * var(--bs-gutter-x));
+  }
+}
+
+//SELECTED OPTION CHECKED
+.custom-select {
+  option {
+    &:checked {
+      color: white !important;
+      background-color: $accent-color !important;
+      background: $accent-color !important;
+    }
+  }
+}
+
+// LOADING BLUR
+.blur {
+  -webkit-filter: blur(2px) !important;
+  -moz-filter: blur(2px) !important;
+  -o-filter: blur(2px) !important;
+  -ms-filter: blur(2px) !important;
+  filter: blur(2px) !important;
+  background-color: #fff !important;
+}
+
+// CHECKBOX
+.custom-form-check {
+  .form-check-input {
+    border-radius: 2px !important;
+
+    &:checked {
+      background-color: $black !important;
+      border-color: $black !important;
+    }
+    &:focus {
+      box-shadow: none !important;
+      border-color: #bfbfbf !important;
+    }
+  }
+  .form-check-label {
+    color: $dark-gray;
+    margin-left: 0.5rem;
+  }
+}
+
+// CART PREVIEW DROPDOWN OVERRIDE
+.cart-container {
+  .dropdown {
+    .dropdown-toggle::after {
+      display: none !important;
+    }
+  }
+}
+.cart-dd {
+  width: 20rem !important;
+  // margin-top: 0.6rem !important;
+  padding: 1rem !important;
+}
+.hover-color:hover {
+  color: $accent-color !important;
+  cursor: pointer;
+}
+
+.text-centerd {
+  text-align: center;
+}
+
+.main-color {
+  color: $main-color !important;
+}
+
+.accent-color {
+  color: $accent-color !important;
+}
+
+.link-hover {
+  color: $main-color;
+
+  &:hover {
+    color: $accent-color;
+    cursor: pointer;
+  }
+}
+
+.accent-hover:hover {
+  cursor: pointer;
+  color: $accent-color;
+}
+
+.custom-btn {
+  background-color: transparent;
+  color: $accent-color;
+  border: solid 2px $accent-color;
+  margin-top: 1rem;
+  padding: 0.8rem 1.8rem;
+  text-transform: uppercase;
+
+  &:hover {
+    transition: 0.5s;
+    color: white;
+    background-color: $accent-color;
+  }
+}
+
+.custom-btn-2 {
+  background-color: transparent;
+  color: $dark-gray;
+  border: solid 1px $gray;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+
+  &:hover {
+    transition: 0.5s;
+    background-color: $white;
+    color: $accent-color;
+  }
+}
+
+.custom-btn-disabled {
+  background-color: rgb(47 ,203, 164, 0.25) !important;
+  &:hover {
+    background-color: rgb(47 ,203, 164, 0.25) !important;
+    color: $accent-color !important;
+    cursor: not-allowed !important;
+  }
+}
+
+.social-icons {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 2rem;
+
+  .social-icon {
+    border: solid 1px $main-color;
+    border-radius: 50px;
+    padding: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .social-icon:hover {
+    border: solid 1px $accent-color;
+    cursor: pointer;
+  }
+}
+
+.form-alert {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.input-invalid {
+  border: solid 0.5px red;
+}
+
+.component-container {
+  .component-title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/assets/images/layout/page-header-bg.jpg");
+    height: 10rem;
+    .text-conatier {
+      text-align: center;
+      .title {
+        color: $black;
+        font-weight: 400;
+        font-size: 3rem;
+      }
+      .sub-title {
+        color: $accent-color;
+        font-weight: 500;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+.cart-q-btn {
+  .quantity-button {
+    input {
+      width: 2rem !important;
+    }
+  }
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-form-label {
+  display: flex;
+  color: $dark-gray;
+  align-items: baseline;
+  .text-danger {
+    margin-left: 0.5rem;
+    margin-top: 0 !important;
+    max-width: 80% !important;
+  }
+}
+
+.custom-form-control {
+  border-radius: 0 !important;
+  background-color: #fafafa;
+
+  &:focus {
+    box-shadow: none;
+    border-color: $accent-color;
+    transition: 0.5s;
+  }
+  &:active {
+    box-shadow: none;
+    border-color: $accent-color;
+    transition: 0.5s;
+  }
+}
+
+
+
+//OWL-CAROUSEL
+.recommended-carousel {
+  owl-carousel-o {
+    max-height: 37vh !important;
+    .owl-carousel  {
+      .owl-stage-outer {
+        owl-stage {
+          div{
+            .owl-stage {
+              .owl-item  {
+                width: 15rem !important;
+                margin: 0 0.5rem !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// APP LOADER
+#app-loader-cotainer{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .app-loader {
+    text-align: center;
+    .app-logo {
+      width: 15rem;
+    }
+    .progressbar-container {
+      margin-top: 1rem;
+      width: 20rem;
+      .horizontal-app-loader {
+        width: 100%;
+        height: 4.8px;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+          content: '';
+          width: 96px;
+          height: 4.8px;
+          background: #2fcba4;
+          position: absolute;
+          top: 0;
+          left: 0;
+          box-sizing: border-box;
+          animation: hitZak 0.8s ease-in-out infinite alternate;
+        }
+      }
+    }
+  }
+}
+@keyframes hitZak {
+  0% {
+    left: 0;
+    transform: translateX(-1%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(-99%);
+  }
+}
+
+// SLIDER CUSTOMIZATION
+.filter-price-custom-slider {
+  .ngx-slider-limit {
+    display: none !important;
+  }
+  .ngx-slider-combined {
+    display: none !important;
+  }
+  .ngx-slider-bar {
+    background: #ebebeb !important;
+  }
+  .ngx-slider-selection {
+    background: $black !important;
+  }
+  .ngx-slider-pointer {
+    width: 1rem !important;
+    height: 1rem !important;
+    top: -6px !important;
+    background-color: white !important;
+    border: solid 0.2px $black !important;
+
+    &::after {
+      display: none !important;
+    }
+  }
+  .ngx-slider-bubble {
+    bottom: -35px !important;
+    color: $dark-gray !important;
+  }
+}
+
+
+// IMAGE ZOOM
+.big-image {
+  lib-ngx-image-zoom {
+    .ngxImageZoomContainer {
+      .ngxImageZoomThumbnail {
+        max-height: 60vh;
+        object-fit: contain;
+        max-width: 30vw
+      }
+    }
+  }
+
+  &:hover {
+    cursor: crosshair;
+  }
+}
+
+// SELECTION {
+::selection {
+  background:$accent-color;
+  color: white;
+}
+
+// OVERRIDE LINK
+.custom-link {
+  text-decoration: none !important;
+  &:active {
+    color: $main-color !important;
+  }
+  &:visited {
+    color: $main-color !important;
+  }
+}
+
+
+/*SCROLLBAR CUSTOM COLOR*/
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $accent-color;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $accent-color-dark;
+}
+
+// ANIMATED ARROW MENU
+.arrow-animated {
+  svg {
+    animation: resize-1 0.2s normal linear;
+  }
+}
+@keyframes resize-1 {
+  from{
+    margin-left: -1rem;
+  }
+  to{
+    margin-left: 0rem;
+  }
+}

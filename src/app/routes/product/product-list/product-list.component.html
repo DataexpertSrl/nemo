@@ -1,0 +1,16 @@
+<div class="product-container component-container">
+  <div class="component-title">
+    <div class="text-conatier">
+      <h4 class="title">{{'Product.Title' | translate}}</h4>
+      <p class="sub-title">{{'Product.Subtitle' | translate}}</p>
+    </div>
+  </div>
+   <app-grid
+     [previewMode]="false"
+     [productsList]="productsList"
+     [loading]="loading"
+     [hasMoreProduct]="hasMoreProduct"
+     [loadingMoreProduct]="loadingMoreProduct"
+     (loadMoreProduct)="MoreProduct()">
+   </app-grid>
+</div>

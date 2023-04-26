@@ -1,0 +1,150 @@
+<div class="component-container">
+  <div class="component-title">
+    <div class="text-conatier">
+      <h4 class="title">{{'Orders.Order' | translate}}</h4>
+      <p *ngIf="order" class="sub-title">#{{order.orderNumber}}</p>
+      <div *ngIf="order && order.orderStatus" class="order-tatus">
+        <app-order-status-badge [status]="order.orderStatus"></app-order-status-badge>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="custom-container">
+  <ng-container *ngIf="loading">
+    <div class="loader-container">
+      <app-loader></app-loader>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!loading && order && !orderNotFound">
+    <div class="order-container">
+      <div class="row">
+        <div class="col-12 col-lg-4">
+          <div class="shipping-billing-info section">
+            <h5 class="section-title">{{'Orders.OrderDetail.BillingInfo' | translate}}</h5>
+            <p class="info ellipsis"><span class="info-title">{{'Orders.OrderDetail.Recipeient' | translate}}: </span>
+              <span title="{{order.orderBillingAddress.businessName}}"
+                *ngIf="order.orderBillingAddress && order.orderBillingAddress.businessName ; else undefined_info">
+                {{order.orderBillingAddress.businessName}}</span>
+            </p>
+            <p class="info ellipsis"><span class="info-title">{{'Orders.OrderDetail.Address' | translate}}: </span>
+              <span title="{{order.orderBillingAddress.address}}"
+                *ngIf="order.orderBillingAddress && order.orderBillingAddress.address ; else undefined_info">
+                {{order.orderBillingAddress.address}}</span>
+            </p>
+            <p class="info ellipsis"><span class="info-title">{{'Orders.OrderDetail.Zip' | translate}}: </span>
+              <span title="{{order.orderBillingAddress.zip}}"
+                *ngIf="order.orderBillingAddress && order.orderBillingAddress.zip ; else undefined_info">
+                {{order.orderBillingAddress.zip}}</span>
+            </p>
+            <p class="info ellipsis"><span class="info-title">{{'Orders.OrderDetail.Province' | translate}}: </span>
+              <span title="{{order.orderBillingAddress.province}}"
+                *ngIf="order.orderBillingAddress && order.orderBillingAddress.province; else undefined_info">
+                {{order.orderBillingAddress.province}}</span>
+            </p>
+            <p class="info ellipsis"><span class="info-title">{{'Orders.OrderDetail.City' | translate}}: </span>
+              <span title="{{order.orderBillingAddress.city}}"
+                *ngIf="order.orderBillingAddress && order.orderBillingAddress.city ; else undefined_info">
+                {{order.orderBillingAddress.city}}</span>
+            </p>
+            <!-- <p class="info ellipsis"><span class="info-title">{{'Orders.OrderDetail.Phone' | translate}}: </span>
+              <span title="{{order.orderBillingAddress.phone}}"
+                *ngIf="order.orderBillingAddress && order.orderBillingAddress.phone ; else undefined_info">
+                {{order.orderBillingAddress.phone}}</span>
+            </p> -->
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="other-info section">
+            <h5 class="section-title">{{'Orders.OrderDetail.PaymentMethod' | translate}}</h5>
+            <p *ngIf="order.orderEconomic && order.orderEconomic.paymentType && order.orderEconomic.paymentType.item1  && order.orderEconomic.paymentType.item2; else undefined_info"
+              class="info ellipsis"
+              title="{{order.orderEconomic.paymentType.item1}} - {{order.orderEconomic.paymentType.item2}}">
+              {{order.orderEconomic.paymentType.item2}}
+            </p>
+            <h5 class="section-title">{{'Orders.OrderDetail.Orderdate' | translate}}:</h5>
+            <p *ngIf="order.orderDate ; else undefined_info" class="info ellipsis">{{order.orderDate | date: 'dd'}} -
+              {{'Month.' + order.orderDate.getMonth() | translate}} - {{order.orderDate | date: 'YYYY'}}</p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="price-info section">
+            <h5 class="section-title">{{'Orders.OrderDetail.Total' | translate}}</h5>
+            <p class="info ellipsis" title="{{GetProductsTotal() | number : '1.2-2'}}€"><span
+                class="info-title">{{'Orders.OrderDetail.ProductTotal' | translate}}: </span>{{GetProductsTotal() |
+              number : '1.2-2'}}€</p>
+            <p class="info ellipsis"
+              title="{{(order.orderEconomic ? order.orderEconomic.shippingAmount : 0.00) | number : '1.2-2'}}€"><span
+                class="info-title">{{'Orders.OrderDetail.ShippingTotal' | translate}}: </span>{{(order.orderEconomic ?
+              order.orderEconomic.shippingAmount : 0.00) | number : '1.2-2'}}€</p>
+            <p class="info-bold accent-color" title="{{GetOrderTotal() | number : '1.2-2'}}€">
+              {{'Orders.OrderDetail.Total' | translate}}: {{GetOrderTotal() | number : '1.2-2'}}€
+            </p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="product-container" *ngIf="order.orderDetails && order.orderDetails.length > 0; else no_product">
+            <virtual-scroller #scroll [items]="order.orderDetails" #virtualScroll id="virtualScroll"
+              class="list-container list-group"  data-layout="fitRows">
+              <div class="product row" *ngFor="let prod of scroll.viewPortItems" (click)="GoToProdDetail(prod.productId)">
+                <!-- <div class="image-container col-12 col-md-2">
+                  <img *ngIf="prod.imageUrl" class="prod-image" [src]="prod.imageUrl" onerror="prod.ImageUrl = null">
+                  <img *ngIf="!prod.imageUrl" class="prod-image" src="/assets/images/products/no-image-placeholder.jpg">
+                </div> -->
+                <div class="prod-info col-12 ">
+                  <p class="prod-name ellipsis" title="{{prod.description}}">{{prod.description}}</p>
+                  <div class="quantity_total">
+                    <span class="prod-quantity">{{'Orders.OrderDetail.Quantity' | translate}}: <span class="num">{{prod.quantity ? prod.quantity : 0}}</span></span>
+                    <span class="prod-price">{{(prod.totalAmount ? prod.totalAmount : 0.00) | number : '1.2-2'}}€</span>
+                  </div>
+                </div>
+             </div>
+            </virtual-scroller>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!loading && !order && orderNotFound">
+    <div class="loader-container">
+      <h5 class="main-color">{{'Orders.OrderDetail.OrderNotFound' | translate}}</h5>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #undefined_info>
+  <span class="info ellipsis">{{'Orders.OrderDetail.Undefined' | translate}}</span>
+</ng-template>
+
+<ng-template #no_product>
+  <p class="info ellipsis no-product">{{'Orders.OrderDetail.NoProducts' | translate}}</p>
+</ng-template>
+
+<ng-template id="content" #content let-modal>
+  <div class="modal-body">
+    <form [formGroup]="emailForm" (submit)="SubmitOrderRequest()">
+      <div class="mb-3">
+        {{'Order.OderDetail.EmailRequired' | translate}}.
+      </div>
+      <div class="mb-3">
+        <!--Email-->
+        <label class="form-label custom-form-label" for="Email">
+          <span>{{'Checkout.Email' | translate}} *</span>
+          <div *ngIf=" email?.invalid && (email?.dirty || email?.touched)" class="form-text text-danger">
+            <div *ngIf="email?.errors?.['required']">
+              {{'MyAccount.PassowrdForm.Required' | translate}}
+            </div>
+            <div *ngIf="email?.errors?.['pattern']">
+              {{'Login.EmailNotValid' | translate}}
+            </div>
+          </div>
+        </label>
+        <input autocomplete="off" id="Email" type="text" class="form-control custom-form-control"
+          formControlName="Email" />
+      </div>
+      <div class="text-centerd">
+        <button [disabled]="emailForm.invalid" [ngClass]="{'custom-btn-disabled': emailForm.invalid}"
+          class="custom-btn">{{'Orders.OrderDetail.RequestOrder' | translate}}</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

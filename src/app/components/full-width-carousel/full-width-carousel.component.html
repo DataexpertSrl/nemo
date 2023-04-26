@@ -1,0 +1,20 @@
+<div class="image-full-screen" *ngIf="selectedImage">
+  <div class="row">
+    <div class="col-12 close-col">
+      <fa-icon [icon]="['fas', 'times']" (Click)="Close()"></fa-icon>
+    </div>
+    <div class="col-12 main-col">
+      <fa-icon  id="prev-icon" [icon]="['fas', 'chevron-left']" (click)="PrevImage(); $event.stopPropagation();"></fa-icon>
+      <div class="image-container">
+        <div class="image" (click)="NextImage(); $event.stopPropagation();">
+          <img id="resize-image" class="image-full-width" src="{{selectedImage}}" onerror="this.onerror=null;this.src = 'assets/images/products/no-image-placeholder.jpg'">
+          <div class="image-desc">
+            <!--<span>{{selectedImage.Title}}</span>-->
+            <span>{{GetNumDesc()}}</span>
+          </div>
+        </div>
+      </div>
+      <fa-icon id="next-icon" [icon]="['fas', 'chevron-right']" (click)="NextImage(); $event.stopPropagation();"></fa-icon>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="component-container">
+  <div class="component-title">
+    <div class="text-conatier">
+      <h4 class="title">{{'Cart.Title' | translate}}</h4>
+      <p class="sub-title">{{'Product.Subtitle' | translate}}</p>
+    </div>
+  </div>
+</div>
+<div class="custom-container">
+  <div class="row">
+    <div class="col-12 col-xl-8 custom-table mt-2">
+      <div class="row custom-table-header " *ngIf="!smallWidth">
+        <div class="col-12 col-lg-6 custom-table-header-col">
+          {{'Product.Product' | translate}}
+        </div>
+        <div class="col-12 col-lg-2 custom-table-header-col">
+          {{'Cart.Price' | translate}}
+        </div>
+        <div class="col-12 col-lg-2 custom-table-header-col">
+          {{'Cart.Quantity' | translate}}
+        </div>
+        <div class="col-12 col-lg-2 custom-table-header-col tot-col">
+          {{'Cart.Total' | translate}}
+        </div>
+      </div>
+      <div class="list "[ngClass]="{'small-width-list': smallWidth, 'row' : !smallWidth}">
+        <div class="row custom-table-row " (click)="GoToDetail(item.productId); $event.stopPropagation();" [ngClass]="{'border-top-none': i > 0 , 'col-12': !smallWidth}" *ngFor="let item of cart; let i = index">
+          <div class="col-12  remove-row" *ngIf="smallWidth">
+            <fa-icon [ngClass]="{'disabled': disableChange}" (click)="ChangeOrRemoveItem(item, true)" [icon]="['fas', 'times']" ></fa-icon>
+          </div>
+          <div class="col-12 col-lg-6 custom-table-row-col main-info">
+            <div class="prod-image-container">
+              <img class="prod-image" *ngIf="item.imageUrl" [src]="item.imageUrl" onerror="this.onerror=null;this.src = 'assets/images/products/no-image-placeholder.jpg'">
+              <img class="prod-image" *ngIf="!item.imageUrl" src="assets/images/products/no-image-placeholder.jpg">
+            </div>
+            <span title="{{item.name}}" class="ellipsis">{{item.name}}</span>
+          </div>
+          <div class="col-12 col-lg-2 custom-table-row-col ellipsis">
+            {{GetPrice(item.price) | number : '1.2-2'}} €
+          </div>
+          <div class="col-12 col-lg-2 custom-table-row-col">
+            <app-quantity-button [disabled]="disableChange" class="cart-q-btn " [value]="item.quantity" (valueChange)="QuantityChage($event, item)"></app-quantity-button>
+          </div>
+          <div class="col-12 col-lg-2 custom-table-row-col tot-row">
+            <span class="total ellipsis">{{item.price * item.quantity | number : '1.2-2'}}€</span>
+            <fa-icon *ngIf="!smallWidth" [ngClass]="{'disabled': disableChange}" (click)="ChangeOrRemoveItem(item, true); $event.stopPropagation();" [icon]="['fas', 'times']" ></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-xl-4 mt-2">
+      <div class="cart-card card">
+        <div class="card-body">
+          <div class="cart-title">
+            <h4>{{'Cart.CartTotal' | translate}}</h4>
+          </div>
+          <div class="cart-subTotal">
+            <span class="text">{{'Cart.SubTotal' | translate}}: </span>
+            <span class="number">{{GetTotal() | number : '1.2-2'}}€</span>
+          </div>
+          <!-- <div class="change-address">
+            <span>{{'Cart.ChangeAddress' | translate}}</span>
+          </div> -->
+          <div class="cart-total accent-color">
+            <span class="text">{{'Cart.Total' | translate}}: </span>
+            <span class="number">{{GetTotal() | number : '1.2-2'}}€</span>
+          </div>
+        </div>
+        <div class="btn-container card-footer">
+          <button (click)="GoToCheckOut()" [disabled]="disableChange" [ngClass]="{'custom-btn-disabled': disableChange}" class="custom-btn">{{'Cart.GoCheckout' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>

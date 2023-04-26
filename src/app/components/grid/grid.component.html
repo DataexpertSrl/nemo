@@ -1,0 +1,74 @@
+<div class="product-preview-container custom-container">
+  <div class="row filter-row">
+    <div class="col-12 filter-btn-container" *ngIf="!previewMode">
+      <div class="filter-btn link-hover" (click)="OpenFilterSidebar()" *ngIf="!previewMode">
+        <fa-icon [icon]="['fas', 'bars']"></fa-icon> {{'Filters.Filters' | translate}}
+      </div>
+    </div>
+    <div class="col-lg-6" *ngIf="!smallWidth && previewMode">
+
+    </div>
+    <div class="filter-shortcut" [ngClass]="{'col-12': smallWidth, 'col-lg-6': !smallWidth }" *ngIf="previewMode">
+      <div class="shortcut" [ngClass]="{'shortcut-active': activeShortCut === cat.ecommerceCategoryId}"
+        *ngFor="let cat of categories">
+        <span class="link-hover" (click)="ShortCutFilter(cat.ecommerceCategoryId)">{{cat.name}}</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading" class="loader-container">
+    <app-loader class="loader"></app-loader>
+  </div>
+  <div class="product-list">
+    <ng-container *ngIf="previewMode && !loading && productsList && productsList.length > 0 && SomeVisible()">
+      <div class="products-container-preview row" data-layout="fitRows" @parent>
+        <ng-container *ngFor="let p of productsList">
+          <div class="col-6 col-md-4 col-lg-3" *ngIf="p.visible" @FadeInOut>
+            <app-grid-card [product]="p"></app-grid-card>
+          </div>
+        </ng-container>
+      </div>
+
+    </ng-container>
+    <ng-container *ngIf="!previewMode && !loading && productsList && productsList.length > 0">
+      <virtual-scroller id="scroll" #scroll [items]="productsList" class="products-container" data-layout="fitRows" >
+        <div class="col-6 col-md-4 col-lg-3" *ngFor="let p of scroll.viewPortItems">
+          <app-grid-card [product]="p"></app-grid-card>
+        </div>
+      </virtual-scroller>
+    </ng-container>
+
+  </div>
+
+  <ng-container *ngIf="!loading && !previewMode && (!productsList || (productsList && productsList.length === 0))">
+    <div class="placeholder-container">
+      <h5 class="main-color text-center">
+        {{'Product.NoProduct' | translate}}
+      </h5>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!loading && previewMode && !SomeVisible()">
+    <div class="preview-placeholder-container">
+      <h5 class="main-color text-center">
+        {{'Product.NoProduct' | translate}}
+      </h5>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="(previewMode || hasMoreProduct) && !loading">
+    <div class="action-container">
+      <button class="custom-btn-2" (click)="MoreProduct()" [disabled]="loadingMoreProduct">
+        <ng-container *ngIf="previewMode">{{'Product.Title' | translate}}</ng-container>
+        <ng-container *ngIf="!previewMode" >{{'Product.Action.More' |translate}}</ng-container>
+        <fa-icon *ngIf="!loadingMoreProduct && !previewMode" [icon]="['fas', 'rotate']"></fa-icon>
+        <fa-icon *ngIf="previewMode" [icon]="['fas', 'arrow-right-long']"></fa-icon>
+        <div class="text-center" *ngIf="loadingMoreProduct">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </button>
+    </div>
+  </ng-container>
+
+</div>

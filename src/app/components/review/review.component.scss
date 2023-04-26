@@ -1,0 +1,56 @@
+@import '/src/app/shared/style-varibale.scss';
+
+.review-container {
+  padding: 1rem 0rem;
+  border-bottom: solid 1px #ebebeb;
+  .left {
+    .author {
+      font-size: 1.2rem;
+      color:  $black;
+      font-weight: 400;
+    }
+    .rating-container {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: start;
+    }
+    .time {
+      margin-top: 0.5rem;
+      color: $light-gray;
+    }
+  }
+  .right {
+    .title {
+      font-size: 1.2rem;
+      color:  $black;
+      font-weight: 400;
+    }
+    .desc {
+      color: $dark-gray;
+      margin: 1rem 0rem 1rem 0rem;
+    }
+    .actions {
+      display: flex;
+      .action {
+        font-size: 0.8rem;
+        color: $dark-gray;
+        display: flex;
+        margin-right: 2rem;
+        border-bottom: solid 1px transparent;
+        fa-icon {
+          margin-right: 0.5rem;
+        }
+        .active {
+          color: $accent-color !important;
+        }
+
+        &:hover {
+          transition: 0.5s;
+          cursor: pointer;
+          color: $accent-color !important;
+          border-bottom: solid 1px $accent-color !important;
+        }
+      }
+    }
+  }
+}

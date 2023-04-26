@@ -1,0 +1,67 @@
+@import '/src/app/shared/style-varibale.scss';
+
+.footer {
+  padding-top: 3rem;
+  border-top: solid 1px #ebebeb;
+
+  .main-color {
+    color: $main-color;
+  }
+
+  .widget-title {
+    color: #333333;
+    font-size: 1rem;
+  }
+
+  .link-hover {
+    color: $main-color;
+    text-decoration: none;
+    line-height: 2rem;
+  }
+  .link-hover:active {
+    color: $main-color;
+  }
+  .link-hover:visited {
+    color: $main-color;
+  }
+
+  .link-hover:hover {
+    color: $accent-color;
+    cursor: pointer;
+  }
+
+  .widget-list {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .social-icons {
+    padding: 0 !important;
+  }
+
+  .footer-middle {
+    .foother-main-container {
+      margin: 0% 18.5%;
+      .widget  {
+        margin-top: 2rem;;
+
+        .widget-title {
+          color: #333333;
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    .foother-main-container {
+      margin: 0% 18.5%;
+      border-top: solid 1px #ebebeb;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      padding-bottom: 0.5rem;
+    }
+
+  }
+}

@@ -1,0 +1,43 @@
+<div class="orders-container">
+  <ng-container *ngIf="loadingOrders">
+    <div class="loader-container">
+      <app-loader></app-loader>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!loadingOrders">
+    <div *ngIf="!orders || orders.length === 0 " class="no-orders">
+      <p class="main-color no-order-text">{{'MyAccount.Order.NoOrders' | translate}}.</p>
+      <button class="custom-btn" (click)="GoShop()">
+        <span>{{'MyAccount.Order.GoShop' | translate}}</span>
+        <fa-icon [icon]="['fas', 'arrow-right-long']"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="orders && orders.length > 0 " class="orders">
+
+      <virtual-scroller #scroll [items]="orders" #virtualScroll id="virtualScroll" class="list-container list-group"
+        [ngClass]="{'blur': loadingMoreOrders}" data-layout="fitRows" (scroll)="ScrollEvent($event)" >
+        <div class="order" *ngFor="let order of scroll.viewPortItems" (click)="GoToDetail(order.orderNumber)">
+          <div class="row">
+            <div class="order-number col-6 col-lg-3 ellipsis"
+              title="{{'Orders.OrderNumber' | translate}}: #{{order.orderNumber}}">#{{order.orderNumber}}</div>
+            <div class="order-date col-6 col-lg-3 ellipsis"
+              title="{{'Orders.OrderDate' | translate}}: {{order.orderDate | date: 'dd'}} - {{'Month.' + order.orderDate.getMonth() | translate}} - {{order.orderDate | date: 'YYYY'}}">
+              {{order.orderDate | date: 'dd'}} - {{'Month.' + order.orderDate.getMonth() | translate}} -
+              {{order.orderDate | date: 'YYYY'}}
+            </div>
+            <div class="order-stuatus col-12 col-lg-3 ellipsis">
+              <app-order-status-badge [status]="order.orderStatus"></app-order-status-badge>
+            </div>
+            <div class="order-amount col-12 col-lg-3 ellipsis"
+              title="{{'Orders.OrderAmount' | translate}}: {{order.totalAmount | number : '1.2-2'}}€">{{order.totalAmount | number :
+              '1.2-2'}} €</div>
+          </div>
+        </div>
+      </virtual-scroller>
+      <div class="loader-more-container" *ngIf="loadingMoreOrders">
+        <app-loader></app-loader>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

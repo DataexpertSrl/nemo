@@ -1,0 +1,35 @@
+<div class="conatiner">
+  <div id="home_carousel" class="carousel slide" data-bs-interval="false">
+    <div class="carousel-inner">
+      <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let slide of slides; let i = index">
+        <img [src]="slide.src" class="d-block slider-images" [alt]="slide.alt">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 *ngIf="slide.subTitle" class="carousel_sub_title">{{slide.subTitle}}</h5>
+          <h5 *ngIf="slide.title" class="carousel_title" [innerHtml]="slide.title"
+            [style]="ResolveColor(slide.titleColor)"></h5>
+          <button *ngIf="slide.linkTitle" class="custom-btn">{{slide.linkTitle}} <fa-icon
+              [icon]="['fas', 'arrow-right-long']"></fa-icon></button>
+
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev carousel-control" type="button" data-bs-target="#home_carousel"
+      data-bs-slide="prev">
+      <!--<span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+      <fa-icon class="custom-icon" [icon]="['fas', 'chevron-left']"></fa-icon>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next carousel-control" type="button" data-bs-target="#home_carousel"
+      data-bs-slide="next">
+      <!--<span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+      <fa-icon class="custom-icon" [icon]="['fas', 'chevron-right']"></fa-icon>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <app-grid [previewMode]="true" [productsList]="productsList" [loading]="loading" [hasMoreProduct]="false"></app-grid>
+  <!-- <div class="loader-container" *ngIf="loading">
+    <app-loader></app-loader>
+  </div> -->
+
+</div>

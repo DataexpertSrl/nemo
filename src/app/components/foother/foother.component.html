@@ -1,0 +1,80 @@
+<footer class="footer">
+  <div class="footer-middle">
+      <div class="foother-main-container">
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <div class="widget widget-about">
+              <img src="assets/images/Logo_Nemo.png" class="footer-logo" alt="Footer Logo" width="80">
+              <p class="main-color ">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+
+              <div class="social-icons">
+                <a class="social-icon link-hover" target="_blank" title="Facebook"> <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon></a>
+                <a class="social-icon link-hover" target="_blank" title="Twitter"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></a>
+                <a class="social-icon link-hover" target="_blank" title="Instagram"><fa-icon [icon]="['fab', 'instagram']"></fa-icon></a>
+                <a class="social-icon link-hover" target="_blank" title="Youtube"><fa-icon [icon]="['fab', 'youtube']"></fa-icon></a>
+                <a class="social-icon link-hover" target="_blank" title="Pinterest"><fa-icon [icon]="['fab', 'pinterest']"></fa-icon></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="widget">
+              <h4 class="widget-title">{{'Footer.UsefullLink' | translate}}</h4>
+
+              <ul class="widget-list">
+                <li><a class="link-hover" >{{'Footer.AboutNemo' | translate}}</a></li>
+                <li><a class="link-hover" >{{'Footer.HowToShop' | translate}}</a></li>
+                <li><a class="link-hover" >FAQ</a></li>
+                <li><a class="link-hover" >{{'Footer.ContactUs' | translate}}</a></li>
+                <li>
+                  <a *ngIf="!sharedService.userLoggedIn" class="link-hover" [routerLink]="['/user/Login']">{{'Footer.LogIn' | translate}}</a>
+                  <a *ngIf="sharedService.userLoggedIn" class="link-hover" [routerLink]="['/user/MyAccount']">{{'Footer.MyAccount' | translate}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="widget">
+              <h4 class="widget-title">{{'Footer.CustomerService' | translate}}</h4>
+
+              <ul class="widget-list">
+                <li><a class="link-hover" >{{'Footer.PayMethod' | translate}}</a></li>
+                <li><a class="link-hover" >{{'Footer.MoneyBack' | translate}}</a></li>
+                <li><a class="link-hover" >{{'Footer.Returns' | translate}}</a></li>
+                <li><a class="link-hover" >{{'Footer.Shipping' | translate}}</a></li>
+                <li><a class="link-hover" >{{'Footer.Terms' | translate}}</a></li>
+                <li><a class="link-hover" >{{'Footer.PrivacyPolicy' | translate}}</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="widget">
+              <h4 class="widget-title">{{'Footer.MyAccount' | translate}}</h4>
+
+              <ul class="widget-list">
+                <li>
+                  <a *ngIf="!sharedService.userLoggedIn" class="link-hover" [routerLink]="['/user/Login']">{{'Footer.SignIn' | translate}}</a>
+                  <a *ngIf="sharedService.userLoggedIn"  class="link-hover" [routerLink]="['/user/MyAccount']">{{'Footer.SignIn' | translate}}</a>
+                </li>
+                <li><a class="link-hover" [routerLink]="['/shopping/cart']">{{'Footer.ViewCart' | translate}}</a></li>
+                <li><a class="link-hover" >{{'Footer.MyWishList' | translate}}</a></li>
+                <li><a class="link-hover" >{{'Footer.TrackOrder' | translate}}</a></li>
+                <li><a class="link-hover" >{{'Footer.Help' | translate}}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="foother-main-container">
+      <p class="footer-copyright main-color">Copyright © {{year}} Nemo. All Rights Reserved.</p>
+      <!--<figure class="footer-payments">
+        <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
+      </figure>-->
+    </div>
+  </div>
+</footer>

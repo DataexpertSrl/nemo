@@ -1,0 +1,5 @@
+<div class="icon-container" >
+  <ng-container *ngFor="let r of ratinglist; let i = index">
+    <fa-icon [icon]="icon" class="rating-icon" [ngClass]="{'accent': r === true, 'gray' : r === false, 'editable': editable}" (click)="Change(i)"></fa-icon>
+  </ng-container>
+</div>

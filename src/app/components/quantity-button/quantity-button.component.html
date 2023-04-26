@@ -1,0 +1,5 @@
+<div class="input-group quantity-button">
+  <span [ngClass]="{'click-disabled': disabled}" class="input-group-text minus quantity-action accent-hover" (click)="ChangeQuantity(false); $event.stopPropagation();">-</span>
+  <input type="text" readonly class="form-control qty-input" [(ngModel)]="value">
+  <span [ngClass]="{'click-disabled': disabled}" class="input-group-text more quantity-action accent-hover" (click)="ChangeQuantity(true); $event.stopPropagation();">+</span>
+</div>

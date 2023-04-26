@@ -1,0 +1,118 @@
+@import '/src/app/shared/style-varibale.scss';
+
+  .product-preview-container {
+
+    .placeholder-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30vh;
+    }
+
+    .preview-placeholder-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 39vh;
+    }
+
+    .filter-row {
+      padding: 0 0.2rem;
+      margin-bottom: 0.5rem;
+
+      .filter-btn-container {
+        display: flex;
+        justify-self: flex-start;
+        align-items: center;
+      }
+    }
+
+    .filter-btn {
+        font-size: 1.1rem;
+      fa-icon {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .filter-shortcut {
+      // width: 100%;
+      overflow: auto;
+      display: flex;
+      // justify-content: end;
+      .shortcut {
+        margin: 0 0.5rem;
+        font-size: 1.1rem;
+        border-bottom: solid 1px transparent;
+      }
+      .shortcut-active {
+        border-bottom: solid 1px $accent-color;
+        .link-hover {
+          color: $accent-color !important;
+        }
+      }
+    }
+
+
+    .products-container {
+      margin-top: 1.5rem;
+      height: 90vh;
+    }
+    .products-container-preview {
+      margin-top: 1.5rem;
+      min-height: 38vh;
+    }
+    .action-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .custom-btn-2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        fa-icon {
+          margin-left: 0.5rem;
+        }
+        .text-center {
+          margin-left: 0.5rem;
+          .spinner-border {
+            width: 1rem;
+            height: 1rem;
+            font-size: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  .loader-container {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .loader {
+      width: 100%;
+    }
+  }
+
+
+/*
+MEDIA QUERY
+*/
+
+@media screen and (max-width: 770px) {
+  .product-preview-container {
+
+    .filter-btn {
+      text-align: center !important;
+    }
+
+    .filter-shortcut {
+      margin-top: 1rem;
+      // justify-content: center !important;
+    }
+  }
+}
+
+

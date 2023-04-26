@@ -1,0 +1,56 @@
+<div class="sticky-toolbar" *ngIf="!isToolbarInView" @DropInOut>
+  <app-header [isToolbarInView]="false" ></app-header>
+</div>
+
+
+
+<div class="sidebar-container" *ngIf="sidebarOpen && !isLandingPage" @SlideInOut>
+    <app-sidebar (OpenSidebarEvent)="CloseSidebar()"></app-sidebar>
+</div>
+<div class="sidebar-container" *ngIf="filterSidebarOpen && !isLandingPage" @SlideInOutFaster>
+    <app-filter (applyFilter)="ApplyFilter($event)" ></app-filter>
+</div>
+
+<div class="main-container">
+
+  <div class="loading-overlay" *ngIf="loading">
+    <app-loader></app-loader>
+  </div>
+
+  <div class="main-wrapper" [ngClass]="{'main-wapper-margin': sidebarOpen, 'main-wapper-no-margin': !sidebarOpen}">
+    <div class="overlay" (click)="CloseSidebar()" *ngIf="sidebarOpen || filterSidebarOpen"></div>
+    <div class="header-container" id="toolbar" #toolbar *ngIf="!isLandingPage">
+      <app-header [isToolbarInView]="true" (OpenSidebarEvent)="OpenSidebar()"></app-header>
+    </div>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="foother-container" *ngIf="!isLandingPage">
+      <app-foother></app-foother>
+    </div>
+  </div>
+
+  <div class="full-width-product-container" *ngIf="openProdFullWidth && fullWidthProd && !isLandingPage" (click)="CloseFwp()">
+    <app-full-width-carousel [fwp]="fullWidthProd"></app-full-width-carousel>
+  </div>
+</div>
+
+<div class="scroll-top-btn-container" *ngIf="!isToolbarInView && !isLandingPage" @DropInOutScroll>
+  <div class="scroll-top-btn" (click)="ScrollTop()" title="{{'Shared.BackToTop' | translate}}">
+    <fa-icon [icon]="['fas', 'arrow-up']" ></fa-icon>
+  </div>
+
+</div>
+
+<div class="toast-container" *ngFor="let toast of sharedService.toasts">
+  <ngb-toast  class=" toast text-light"
+  [ngClass]="{'bg-danger': !toast.isSuccess, 'bg-success': toast.isSuccess}" [autohide]="true"
+  [delay]="toast.delay || 5000" (hidden)="sharedService.RemoveToast(toast)">
+  <ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
+    <ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
+  </ng-template>
+
+  <ng-template #text>{{ toast.textOrTpl }}</ng-template>
+</ngb-toast>
+</div>
+

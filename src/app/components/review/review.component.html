@@ -1,0 +1,23 @@
+<div class="review-container row" *ngIf="review">
+  <div class="left col-12 col-lg-3 col-xxl-2">
+    <h4 class="author">{{review.Author}}</h4>
+    <div class="rating-container">
+      <app-star-rating [maxRating]="5" [rating]="review.Rating" [editable]="false"></app-star-rating>
+    </div>
+    <span class="time">{{review.Days}} {{'Product.Review.DaysAgo' | translate}}</span>
+  </div>
+  <div class="right col-12 col-lg-9 col-xxl-10">
+    <h4 class="title">{{review.Title}}</h4>
+    <p class="desc">{{review.Desc}}</p>
+    <div class="actions">
+      <div class="action" (click)="HelpfulClick()">
+        <fa-icon [ngClass]="{'active': helpfulAdd}" [icon]="['far', 'thumbs-up']"></fa-icon>
+        {{'Product.Review.Helpful' | translate}} ({{review.Helpful}})
+      </div>
+      <div class="action" (click)="UnhelpfulClick()">
+        <fa-icon [ngClass]="{'active': unHelpfulAdd}" [icon]="['far', 'thumbs-down']"></fa-icon>
+        {{'Product.Review.Unhelpful' | translate}} ({{review.Unhelpful}})
+      </div>
+    </div>
+  </div>
+</div>

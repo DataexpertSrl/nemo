@@ -1,0 +1,94 @@
+@import '/src/app/shared/style-varibale.scss';
+
+.landing-page {
+  background-image: url("/assets/images/backgrounds/login-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .card {
+    // min-width: 32vw;
+    // min-height: 30vh;
+    width: 95%;
+    .card-header {
+      color: $black;
+      background-color: white;
+      text-align: center;
+
+      .error {
+        color:  red;
+      }
+      .success {
+        // color: green;
+        color:  $black;
+      }
+    }
+    .card-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      .form-body {
+        overflow: auto;
+        max-height: 40vh;
+      }
+      .button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      .form-container {
+        padding: 0.5rem;
+        width: 100%;
+      }
+      .status-msg {
+        margin: 0 !important;
+      }
+    }
+  }
+}
+
+.error-pattern {
+  margin: 0!important;
+}
+
+.custom-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem !important;
+
+  fa-icon {
+    margin-left: 0.5rem;
+  }
+  .text-center {
+    margin-left: 0.5rem;
+    .spinner-border {
+      width: 1rem;
+      height: 1rem;
+      font-size: 0.5rem;
+    }
+  }
+}
+@media screen and (min-width: 800px) {
+  .card {
+    width: 80% !important;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .card {
+    width: 65% !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .card {
+    width: 50% !important;
+  }
+}

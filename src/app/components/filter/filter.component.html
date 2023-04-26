@@ -1,0 +1,105 @@
+<div class="filter-sidebar">
+  <div class="close-and-clean">
+    <div class="close" (click)="CloseFilter()">
+      <fa-icon [icon]="['fas', 'times']"></fa-icon>
+      {{'Filters.Filters' | translate}}
+    </div>
+    <div class="clean" (click)="ClearFilter()">
+      {{'Filter.Clear' | translate}}
+    </div>
+  </div>
+  <div class="list-container">
+    <div class="accordion" *ngIf="!loading">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapse-sort" aria-expanded="false" (click)="OpenClose('sort')">
+            <span class="accordion-title" [ngClass]="{'active': accordionOpen.includes('sort')}">{{'Filters.Sort' | translate}}</span>
+            <fa-icon *ngIf="accordionOpen.includes('sort')" [icon]="['fas', 'chevron-up']"></fa-icon>
+            <fa-icon *ngIf="!accordionOpen.includes('sort')" [icon]="['fas', 'chevron-down']"></fa-icon>
+          </button>
+        </h2>
+        <div id="flush-collapse-sort" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+          <div class="accordion-body">
+            <div class="checkbox-list" *ngFor="let s of sortBy">
+              <div class="form-check custom-form-check">
+                <input class="form-check-input" type="checkbox" name="sort-checkbox" id="sort-checkbox" [disabled]="disabled" [checked]="s.checked" (click)="CheckSort(s.property)">
+                <label class="form-check-label" for="sort-checkbox">
+                  {{'Sort.' + s.property | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapse-cat" aria-expanded="false" (click)="OpenClose('cat')">
+            <span class="accordion-title" [ngClass]="{'active': accordionOpen.includes('cat')}">{{'Filters.Category' | translate}}</span>
+            <fa-icon *ngIf="accordionOpen.includes('cat')" [icon]="['fas', 'chevron-up']"></fa-icon>
+            <fa-icon *ngIf="!accordionOpen.includes('cat')" [icon]="['fas', 'chevron-down']"></fa-icon>
+          </button>
+        </h2>
+        <div id="flush-collapse-cat" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+          <div class="accordion-body">
+            <div class="checkbox-list" *ngFor="let c of categories">
+              <div class="form-check custom-form-check">
+                <input class="form-check-input" type="checkbox" [checked]="c.checked" [disabled]="disabled" (click)="Check(c.ecommerceCategoryId, false)" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{c.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!--
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapse-brand" aria-expanded="false" (click)="OpenClose('brand')">
+            <span class="accordion-title" [ngClass]="{'active': accordionOpen.includes('brand')}">{{'Filters.Brand' | translate}}</span>
+            <fa-icon *ngIf="accordionOpen.includes('brand')" [icon]="['fas', 'chevron-up']"></fa-icon>
+            <fa-icon *ngIf="!accordionOpen.includes('brand')" [icon]="['fas', 'chevron-down']"></fa-icon>
+          </button>
+        </h2>
+        <div id="flush-collapse-brand" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+          <div class="accordion-body">
+            <div class="checkbox-list" *ngFor="let b of brands">
+              <div class="form-check custom-form-check">
+                <input class="form-check-input" type="checkbox" [checked]="b.Checked" [disabled]="disabled" (click)="Check(b.Id, true)" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{b.Name}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    -->
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapse-price" aria-expanded="false" (click)="OpenClose('price')">
+            <span class="accordion-title" [ngClass]="{'active': accordionOpen.includes('price')}">{{'Filters.Price' | translate}}</span>
+            <fa-icon *ngIf="accordionOpen.includes('price')" [icon]="['fas', 'chevron-up']"></fa-icon>
+            <fa-icon *ngIf="!accordionOpen.includes('price')" [icon]="['fas', 'chevron-down']"></fa-icon>
+          </button>
+        </h2>
+        <div id="flush-collapse-price" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+          <div class="accordion-body">
+            <p class="selectd-range">{{'Filters.PriceRange' | translate}}: <span>€{{minValue}} - €{{maxValue}}</span></p>
+            <div class="filter-price-custom-slider">
+              <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" (userChangeEnd)="RangeChanged()" [options]="options"></ngx-slider>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loader-container" *ngIf="loading">
+      <app-loader></app-loader>
+    </div>
+  </div>
+</div>

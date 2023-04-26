@@ -1,0 +1,64 @@
+<div class="user-container">
+  <div class="user-card">
+    <div class="tab-selector">
+      <ul class="nav nav-pills nav-fill">
+        <li class="nav-item" [ngClass]="{'tab-active': tabActive === 1}" (click)="OpenTab(1)">
+          <a class="nav-link" >{{'User.Login' | translate}}</a>
+        </li>
+        <li class="nav-item" [ngClass]="{'tab-active': tabActive === 2}" (click)="OpenTab(2)">
+          <a class="nav-link" >{{'User.Register' | translate}}</a>
+        </li>
+      </ul>
+    </div>
+    <div #tabview id="tabview" @FatherTabAnimation>
+      <div class="tab" *ngIf="tabActive === 1" @TabFade>
+        <ng-container *ngTemplateOutlet="loginform"></ng-container>
+      </div>
+      <div class="tab" *ngIf="tabActive === 2" @TabFade>
+        <ng-container *ngTemplateOutlet="loginform;"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loginform>
+  <form [formGroup]="loginForm" (ngSubmit)="LoginOrRegister()" class="form">
+    <div class="mb-3">
+      <label for="Email" class="form-label custom-form-label">
+        <span>
+          Email *
+        </span>
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="form-text text-danger">
+          <div *ngIf="email?.errors?.['pattern']">
+            {{'Login.EmailNotValid' | translate}}
+          </div>
+          <div *ngIf="email?.errors?.['required']">
+            {{'Login.EmailRequired' | translate}}
+          </div>
+        </div>
+      </label>
+      <input [ngClass]="{'input-invalid': email?.invalid && (email?.dirty || email?.touched)}" type="email" formControlName="Email" class="form-control custom-form-control" id="Email"  autocomplete="off">
+
+    </div>
+    <div class="mb-3">
+      <app-password-input [formGroup]="loginForm" [control]="pwd" [controlName]="'Password'" [label]="'Password *'"></app-password-input>
+      <label (click)="ForgotPassowrd()" [ngClass]="{'sendLinkDisable': sendLinkDisable}" class="forgotten-password" *ngIf="email && email.value && email.valid && tabActive === 1">
+        {{'User.ForgottenPassword' | translate}}
+      </label>
+    </div>
+    <div class="login-error">
+      <span *ngIf="loginError">{{loginError}}</span>
+      <span *ngIf="signInError">{{signInError}}</span>
+    </div>
+    <button type="submit" class="custom-btn">
+      <ng-container *ngIf="tabActive === 1" >{{'User.Login' | translate}}</ng-container>
+      <ng-container *ngIf="tabActive === 2" >{{'User.SignUp' | translate}}</ng-container>
+      <fa-icon *ngIf="!loading" [icon]="['fas', 'arrow-right-long']"></fa-icon>
+      <div class="text-center" *ngIf="loading">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </button>
+  </form>
+</ng-template>

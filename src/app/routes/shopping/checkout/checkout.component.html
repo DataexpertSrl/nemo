@@ -1,0 +1,570 @@
+<div class="component-container">
+  <div class="component-title">
+    <div class="text-conatier">
+      <h4 class="title">{{'Checkout.Checkout' | translate}}</h4>
+      <p class="sub-title">{{'Product.Subtitle' | translate}}</p>
+    </div>
+  </div>
+</div>
+<div class="custom-container">
+  <div class="row">
+    <div class="coupon-container form col-12 col-lg-6 col-xl-7 col-xxl-4">
+      <div class="dashed-border">
+        <div title="{{'CheckOut.CouponQuestion' | translate}} {{'CheckOut.CouponClick' | translate}}"
+          *ngIf="couponPlaceholder" @FadeInOut class="placeholder-coupon ellipsis"
+          (click)="ShowCouponPlaceholder(false, false)">
+          <span class="placeholder-text ellipsis">{{'CheckOut.CouponQuestion' | translate}} <span class="accent-color">
+              {{'CheckOut.CouponClick' | translate}}</span></span>
+        </div>
+        <input autocomplete="off"  #coupon_input id='coupon_input' *ngIf="!couponPlaceholder" type="text"
+          class="form-control coupun-input" (blur)="ShowCouponPlaceholder(true, true)" [(ngModel)]="coupon">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-6 col-xl-7 col-xxl-8 min-height-col" #accordionTop>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item" >
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+              (click)="ScrollTo(accordionTop, 0)">
+              {{'Checkout.ShipmentDetail' | translate}}
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div class="form-container">
+                <form [formGroup]="shippingDetailForm">
+                  <div class="row">
+                    <!--ComapnyName-->
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="BusinessName">
+                          <span>{{'Checkout.CompanyName' | translate}} *</span>
+                          <div
+                            *ngIf=" businessNameShip?.invalid && (businessNameShip?.dirty || businessNameShip?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="businessNameShip?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': businessNameShip?.invalid && (businessNameShip?.dirty || businessNameShip?.touched)}"
+                          autocomplete="off"  id="BusinessName" type="text" class="form-control custom-form-control"
+                           formControlName="BusinessName" />
+                      </div>
+                    </div>
+                    <!--Country-->
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="CountryCode">
+                          <span>{{'Checkout.Country' | translate}} *</span>
+                          <div *ngIf=" countryShip?.invalid && (countryShip?.dirty || countryShip?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="countryShip?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <select
+                          [ngClass]="{'input-invalid': countryShip?.invalid && (countryShip?.dirty || countryShip?.touched)}"
+                          id="CountryCode" class="form-control custom-form-control custom-select"
+                           formControlName="CountryCode">
+                          <option *ngFor="let item of availableCountries | keyvalue"
+                            value="{{ResolveCountryCode(item.key)}}"> {{item.value}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <!--StreetAddress-->
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Address">
+                          <span>{{'Checkout.StreetAddress' | translate}} *</span>
+                          <div *ngIf=" address?.invalid && (address?.dirty || address?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="address?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': address?.invalid && (address?.dirty || address?.touched)}"
+                          autocomplete="off"  id="Address" type="text" class="form-control custom-form-control"
+                          formControlName="Address"
+                          [placeholder]="'Checkout.StreetAddressPlaceholder' | translate" />
+                      </div>
+                    </div>
+                    <!--City-->
+                    <div class="col-12 col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="City">
+                          <span>{{'Checkout.City' | translate}} *</span>
+                          <div *ngIf=" cityShip?.invalid && (cityShip?.dirty || cityShip?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="cityShip?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': cityShip?.invalid && (cityShip?.dirty || cityShip?.touched)}"
+                          autocomplete="off"  id="City" type="text" class="form-control custom-form-control"
+                          formControlName="City" />
+                      </div>
+                    </div>
+                    <!--State-->
+                    <div class="col-12 col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Province">
+                          <span>{{'Checkout.State' | translate}} *</span>
+                          <div *ngIf=" stateShip?.invalid && (stateShip?.dirty || stateShip?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="stateShip?.errors?.['country_required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                            <div *ngIf="stateShip?.errors?.['maxlength']">
+                              {{'Checkout.MaxLength' | translate: { legth: provinceMaxLength}   }}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': stateShip?.invalid && (stateShip?.dirty || stateShip?.touched)}"
+                          autocomplete="off"  id="Province" type="text" class="form-control custom-form-control"
+                           formControlName="Province" />
+                      </div>
+                    </div>
+                    <!--ZIP-->
+                    <div class="col-12 col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Zip">
+                          <span>{{'Checkout.Zip' | translate}} *</span>
+                          <div *ngIf=" zipShip?.invalid && (zipShip?.dirty || zipShip?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="zipShip?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': zipShip?.invalid && (zipShip?.dirty || zipShip?.touched)}"
+                          autocomplete="off"  id="Zip" type="text" class="form-control custom-form-control"
+                          formControlName="Zip" />
+                      </div>
+                    </div>
+                    <!--Phone-->
+                    <div class="col-12 col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="PhoneNumber">
+                          <span>{{'Checkout.Phone' | translate}} *</span>
+                          <div *ngIf=" phoneShip?.invalid && (phoneShip?.dirty || phoneShip?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="phoneShip?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': phoneShip?.invalid && (phoneShip?.dirty || phoneShip?.touched)}"
+                          autocomplete="off"  id="PhoneNumber" type="text" class="form-control custom-form-control"
+                          formControlName="PhoneNumber" />
+                      </div>
+                    </div>
+                    <!--Email-->
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Email">
+                          <span>{{'Checkout.Email' | translate}} *</span>
+                          <div *ngIf=" emailShip?.invalid && (emailShip?.dirty || emailShip?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="emailShip?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                            <div *ngIf="emailShip?.errors?.['pattern']">
+                              {{'Login.EmailNotValid' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': emailShip?.invalid && (emailShip?.dirty || emailShip?.touched)}"
+                          autocomplete="off"  id="Email" type="text" class="form-control custom-form-control"
+                          formControlName="Email" />
+                      </div>
+                    </div>
+                    <!--DifferentAddress-->
+                    <div class="col-12 diff-address">
+                      <div class="form-check custom-form-check">
+                        <input class="form-check-input" type="checkbox" id="shipTodifferentAddress"
+                          (click)="OpenShipmentDetailForm()" [(ngModel)]="billRequired"
+                          [ngModelOptions]=" {standalone: true}">
+                        <label class="form-check-label main-color" for="shipTodifferentAddress">
+                          {{'Checkout.RequestInvoice' | translate}}?
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" *ngIf="billRequired" #accordionBill>
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" (click)="ScrollTo(accordionTop, 1)">
+              {{'Checkout.BillingDetails' | translate}}
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div class="form-container">
+                <form [formGroup]="billingDetailForm">
+                  <div class="row">
+                    <!-- COMPANY OR PHYSIC PERSON-->
+                    <div class="col-12">
+                      <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                          [checked]="isCompany" (click)="ChangeBillingType()">
+                        <label class="form-check-label main-color" for="flexSwitchCheckChecked">{{'Checkout.Company' |
+                          translate}}</label>
+                      </div>
+                    </div>
+                    <!--Name-->
+                    <div class="col-12 col-md-6" *ngIf="!isCompany">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Name">
+                          <span>{{'Checkout.Firstname' | translate}} *</span>
+                          <div *ngIf=" firstName?.invalid && (firstName?.dirty || firstName?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="firstName?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': firstName?.invalid && (firstName?.dirty || firstName?.touched)}" autocomplete="off"  id="Name" type="text" class="form-control custom-form-control"
+                          formControlName="Name" />
+                      </div>
+                    </div>
+                    <!--LastName-->
+                    <div class="col-12 col-md-6" *ngIf="!isCompany">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Surname">
+                          <span>{{'Checkout.LastName' | translate}} *</span>
+                          <div *ngIf=" lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="lastName?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': lastName?.invalid && (lastName?.dirty || lastName?.touched)}" autocomplete="off"  id="Surname" type="text" class="form-control custom-form-control"
+                          formControlName="Surname" />
+                      </div>
+                    </div>
+                    <!--VATNumber Code-->
+                    <div class="col-12" *ngIf="!isCompany">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="CF">
+                          <span>{{'Checkout.CF' | translate}}</span>
+                          <div *ngIf=" CF?.invalid && (CF?.dirty || CF?.touched)" class="form-text text-danger">
+                            <div *ngIf="CF?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': CF?.invalid && (CF?.dirty || CF?.touched)}" autocomplete="off"  id="CF" type="text" class="form-control custom-form-control"
+                          formControlName="CF" />
+                      </div>
+                    </div>
+                    <!--CompanyName-->
+                    <div class="col-12" *ngIf="isCompany">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="BusinessName">
+                          <span>{{'Checkout.CompanyNameBilling' | translate}} *</span>
+                          <div *ngIf=" companyName?.invalid && (companyName?.dirty || companyName?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="companyName?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': companyName?.invalid && (companyName?.dirty || companyName?.touched)}" autocomplete="off"  id="BusinessName" type="text" class="form-control custom-form-control"
+                          formControlName="BusinessName" />
+                      </div>
+                    </div>
+                    <!--SDI Code-->
+                    <div class="col-12" *ngIf="isCompany">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="SDICode">
+                          <span>{{'Checkout.SDI' | translate}}</span>
+                          <div *ngIf=" SDICode?.invalid && (SDICode?.dirty || SDICode?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="SDICode?.errors?.['SIDorPEC']">
+                              {{'Checkout.SDIorPEC' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': SDICode?.invalid && (SDICode?.dirty || SDICode?.touched)}" autocomplete="off"  id="SDICode" type="text" class="form-control custom-form-control"
+                           formControlName="SDICode" />
+                      </div>
+                    </div>
+                    <!--VATNumber Code-->
+                    <div class="col-12" *ngIf="isCompany">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="VATNumber">
+                          <span>{{'Checkout.VATNumber' | translate}} *</span>
+                          <div *ngIf=" VATNumber?.invalid && (VATNumber?.dirty || VATNumber?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="VATNumber?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': VATNumber?.invalid && (VATNumber?.dirty || VATNumber?.touched)}" autocomplete="off"  id="VATNumber" type="text" class="form-control custom-form-control"
+                           formControlName="VATNumber" />
+                      </div>
+                    </div>
+                    <!--Country-->
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="CountryCode">
+                          <span>{{'Checkout.Country' | translate}} *</span>
+                          <div *ngIf=" country?.invalid && (country?.dirty || country?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="country?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <select
+                          [ngClass]="{'input-invalid': country?.invalid && (country?.dirty || country?.touched)}"
+                          id="CountryCode" class="form-control custom-form-control custom-select"
+                           formControlName="CountryCode">
+                          <option *ngFor="let item of availableCountries | keyvalue"
+                            value="{{ResolveCountryCode(item.key)}}"> {{item.value}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <!--StreetAddress-->
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Address">
+                          <span>{{'Checkout.StreetAddress' | translate}} *</span>
+                          <div *ngIf=" streetAddress?.invalid && (streetAddress?.dirty || streetAddress?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="streetAddress?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': streetAddress?.invalid && (streetAddress?.dirty || streetAddress?.touched)}" autocomplete="off"  id="Address" type="text" class="form-control custom-form-control"
+                           formControlName="Address" [placeholder]="'Checkout.StreetAddressPlaceholder' | translate" />
+                      </div>
+                    </div>
+                    <!--City-->
+                    <div class="col-12 col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="City">
+                          <span>{{'Checkout.City' | translate}} *</span>
+                          <div *ngIf=" city?.invalid && (city?.dirty || city?.touched)" class="form-text text-danger">
+                            <div *ngIf="city?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': city?.invalid && (city?.dirty || city?.touched)}" autocomplete="off"  id="City" type="text" class="form-control custom-form-control"
+                           formControlName="City" />
+                      </div>
+                    </div>
+                    <!--State-->
+                    <div class="col-12 col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Province">
+                          <span>{{'Checkout.State' | translate}} *</span>
+                          <div *ngIf=" state?.invalid && (state?.dirty || state?.touched)"
+                            class="form-text text-danger">
+
+                            <div *ngIf="state?.errors?.['country_required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                            <div *ngIf="state?.errors?.['maxlength']">
+                              {{'Checkout.MaxLength' | translate: { legth: provinceMaxLength}   }}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': state?.invalid && (state?.dirty || state?.touched)}" autocomplete="off"  id="Province" type="text" class="form-control custom-form-control"
+                           formControlName="Province" />
+                      </div>
+                    </div>
+                    <!--ZIP-->
+                    <div class="col-12 col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Zip">
+                          <span>{{'Checkout.Zip' | translate}} *</span>
+                          <div *ngIf=" zip?.invalid && (zip?.dirty || zip?.touched)" class="form-text text-danger">
+                            <div *ngIf="zip?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': zip?.invalid && (zip?.dirty || zip?.touched)}" autocomplete="off"  id="Zip" type="text" class="form-control custom-form-control"
+                           formControlName="Zip" />
+                      </div>
+                    </div>
+                    <!--Email-->
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="Email">
+                          <span>{{'Checkout.Email' | translate}} *</span>
+                          <div *ngIf=" email?.invalid && (email?.dirty || email?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="email?.errors?.['required']">
+                              {{'MyAccount.PassowrdForm.Required' | translate}}
+                            </div>
+                            <div *ngIf="email?.errors?.['pattern']">
+                              {{'Login.EmailNotValid' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': email?.invalid && (email?.dirty || email?.touched)}" autocomplete="off"  id="Email" type="text" class="form-control custom-form-control"
+                           formControlName="Email" />
+                      </div>
+                    </div>
+                    <!--EmailPEC-->
+                    <div class="col-12" *ngIf="isCompany">
+                      <div class="mb-3">
+                        <label class="form-label custom-form-label" for="PecEmail">
+                          <span>{{'Checkout.EmailPEC' | translate}}</span>
+                          <div *ngIf=" emailPEC?.invalid && (emailPEC?.dirty || emailPEC?.touched)"
+                            class="form-text text-danger">
+                            <div *ngIf="emailPEC?.errors?.['pattern']">
+                              {{'Login.EmailNotValid' | translate}}
+                            </div>
+                            <div *ngIf="emailPEC?.errors?.['SIDorPEC']">
+                              {{'Checkout.SDIorPEC' | translate}}
+                            </div>
+                          </div>
+                        </label>
+                        <input [ngClass]="{'input-invalid': emailPEC?.invalid && (emailPEC?.dirty || emailPEC?.touched)}" autocomplete="off"  id="PecEmail" type="text" class="form-control custom-form-control"
+                           formControlName="PecEmail" />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"
+              [disabled]="shippingDetailForm.invalid"
+              [ngClass]="{'accordion-button-disabled': shippingDetailForm.invalid}" (click)="GetShippingMethods(); ScrollTo(accordionTop, 2);">
+              {{'Checkout.ShippingMethod' | translate}}
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <ng-container *ngIf="loadingShipMethods">
+                <div class="loader-container">
+                  <app-loader></app-loader>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="!loadingShipMethods && shippingMethods">
+                <div class="form-check custom-form-check" *ngFor="let item of shippingMethods">
+                  <input  class="form-check-input" type="checkbox" id="shipping_method"
+                    [checked]="selectedShippingMethod && selectedShippingMethod.id === item.id"
+                    (click)="SelectShippingMethod(item)">
+                  <label class="form-check-label" for="shipping_method">
+                    {{item.name}} - {{item.price | number : '1.2-2'}}€
+                  </label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour"
+              [disabled]="shippingDetailForm.invalid || !paymentMethods || (paymentMethods && paymentMethods.length === 0)"
+              [ngClass]="{'accordion-button-disabled': shippingDetailForm.invalid || !paymentMethods || (paymentMethods && paymentMethods.length === 0)}"
+              (click)="ScrollTo(accordionTop, 3)">
+              {{'Checkout.PaymentMethod' | translate}}
+            </button>
+          </h2>
+          <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFpur"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div class="form-check custom-form-check" *ngFor="let item of paymentMethods">
+                <input class="form-check-input" type="checkbox" id="shipping_method"
+                  [checked]="selectedPaymentMethod && selectedPaymentMethod.id === item.id"
+                  (click)="SelectPaymentMethod(item)">
+                <label class="form-check-label" for="shipping_method">
+                  {{item.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-5 col-xxl-4 min-height-col">
+      <div class="card order-summary">
+        <div class="card-body">
+          <div class="cart-title">
+            <h4>{{'Checkout.YourOrder' | translate}}</h4>
+          </div>
+          <div class="cart-items">
+            <span class="text">{{'Product.Product' | translate}} </span>
+            <span class="text-2">{{'Cart.Total' | translate}}</span>
+          </div>
+          <div class="item-list"
+            [ngClass]="{'item-list-medium': selectedPaymentMethod || selectedShippingMethod,  'item-list-small': selectedPaymentMethod && selectedShippingMethod}">
+            <div class="cart-item" *ngFor="let item of cart">
+              <span class="text ellipsis" title="{{item.name}}">
+                {{item.name}}
+              </span>
+              <span class="number">{{GetItemPrice(item) | number : '1.2-2'}}€</span>
+            </div>
+          </div>
+          <div class="cart-subTotal">
+            <span class="text">{{'Cart.SubTotal' | translate}}: </span>
+            <span class="number">{{GetTotal() | number : '1.2-2'}}€</span>
+          </div>
+          <ng-container *ngIf="selectedShippingMethod">
+            <div class="cart-shippingMethod">
+              <span class="text">{{'Checkout.ShippingMethod' | translate}} </span>
+            </div>
+            <div class="cart-shippingMethod-selected">
+              <span class="text ellipsis" title="{{selectedShippingMethod.name}}">
+                {{selectedShippingMethod.name}}
+              </span>
+              <span class="number">{{selectedShippingMethod.price | number : '1.2-2'}}€</span>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="selectedPaymentMethod">
+            <div class="cart-paymentMethod">
+              <span class="text">{{'Checkout.PaymentMethod' | translate}} </span>
+            </div>
+            <div class="cart-paymentMethod-selected">
+              <span class="text ellipsis" title="{{selectedPaymentMethod.name}}">
+                {{selectedPaymentMethod.name}}
+              </span>
+            </div>
+          </ng-container>
+          <div class="cart-total accent-color">
+            <span class="text">{{'Cart.Total' | translate}}: </span>
+            <span class="number">{{GetCartTotal() | number : '1.2-2'}}€</span>
+          </div>
+        </div>
+        <div class="btn-container card-footer">
+          <button [ngClass]="{'custom-btn-disabled': IsDisabled()}" class="custom-btn" [disabled]="IsDisabled()"
+            (click)="SubmitOrder()">Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

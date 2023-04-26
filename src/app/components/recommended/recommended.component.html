@@ -1,0 +1,22 @@
+<div class="recommended-container">
+  <h4 class="title">
+    {{'Product.Recommened.Title' | translate}}
+  </h4>
+
+  <div class="recommended-carousel">
+    <fa-icon class="custom-icon icon-prev" [icon]="['fas' ,'chevron-left']" (click)="owlCar.prev()"> </fa-icon>
+
+    <div class="carousel-col">
+      <owl-carousel-o [options]="customOptions" #owlCar >
+        <ng-container *ngFor="let prod of recommended">
+          <ng-template carouselSlide [id]="prod.id.toString()">
+            <app-grid-card class="grid-card" [product]="prod" [minview]="true"></app-grid-card>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+
+    <fa-icon class="custom-icon icon-next" [icon]="['fas' ,'chevron-right']" (click)="owlCar.next()"></fa-icon>
+
+  </div>
+</div>

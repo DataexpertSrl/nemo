@@ -1,0 +1,175 @@
+
+
+<ng-container *ngIf="loading">
+  <div class="loader-container" >
+    <app-loader></app-loader>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!loading && product && !productNotFound">
+  <div class="detail-container custom-container" >
+    <div class="row main-detail-row">
+      <div class="col-12 col-md-6 gallery">
+        <div class="image-wrapper">
+          <div class="big-image" *ngIf="fullImage && fullImage !== ''">
+            <ng-container *ngIf="!hideImageZoom">
+              <lib-ngx-image-zoom  [thumbImage]="fullImage" [fullImage]="fullImage" [magnification]="1"
+              [enableScrollZoom]="false"></lib-ngx-image-zoom>
+            </ng-container>
+            <ng-container *ngIf="hideImageZoom ">
+              <img class="placeholder-img" [src]="fullImage" onerror="this.onerror=null;this.src = 'assets/images/products/no-image-placeholder.jpg'; fullImage = null">
+            </ng-container>
+          </div>
+          <div class="big-image" *ngIf="!fullImage || fullImage === ''">
+            <img class="placeholder-img" src="/assets/images/products/no-image-placeholder.jpg">
+          </div>
+          <div class="zoom-btn-container" *ngIf="!hideImageZoom && fullImage && fullImage !== ''">
+            <div class="zoom-btn" (click)="OpenFullWidth()">
+              <fa-icon [icon]="['fas', 'maximize']"></fa-icon>
+            </div>
+          </div>
+        </div>
+          <div class="small-image-list">
+            <div class="small-image" *ngFor="let img of this.product.imagesUrl"
+              [ngClass]="{'selected-image': selectedImage === img}" (click)="SelectImage(img)">
+              <img src="{{img}}" onerror="this.onerror=null;this.src = 'assets/images/products/no-image-placeholder.jpg'">
+            </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-6 info">
+        <h4 class="product-title">{{product.name}}</h4>
+        <div class="rating-review">
+          <div class="ratting">
+            <app-star-rating [maxRating]="5" [rating]="3" ></app-star-rating>
+          </div>
+          <div class="review" (click)="ScrollTo(tabview)">
+            <span>(2 {{'Product.Review.Reviews' | translate}} )</span>
+          </div>
+        </div>
+        <h4 class="product-price">
+          <span>€{{GetPrice(product.price) | number : '1.2-2'}}</span>
+          <span *ngIf="product.startSalePrice && product.endSalePrice && product.salePrice">€{{product.salePrice | number : '1.2-2'}}</span>
+          </h4>
+        <div class="product-desc" [innerHTML]="product.shortDescription"></div>
+        <div class="quantity-selector input-group">
+          <div class="quantity-text">
+            <span>{{'Product.QuantityAbbreviation' | translate}}:</span>
+          </div>
+          <app-quantity-button class="q-btn" [value]="quantity" (valueChange)="ChangeQuantity($event)"></app-quantity-button>
+        </div>
+        <button class="add-to-cart custom-btn" [disabled]="disableAdd" (click)="AddToCart()" >
+          <fa-icon [icon]="['fas', 'cart-plus']"></fa-icon>
+          {{'Product.Action.AddToCart' | translate}}
+        </button>
+        <div class="category-share row">
+          <!--<div class="category col-12 col-xxl-6">
+            <span class="cat-title">{{'Categories.Category' | translate}}: </span>
+            <ng-container *ngIf="product && product?.Category">
+              <span class="cat-name" *ngFor="let cat of product?.Category; let i = index">{{cat.name}}
+              </span>
+            </ng-container>
+          </div>-->
+          <div class="share col-12" > <!--col-xxl-6"-->
+            <span class="share-title">{{'Product.Action.Share' | translate}}:</span>
+            <div class="social-icons">
+              <a class="social-icon link-hover" title="Facebook"> <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon></a>
+              <a class="social-icon link-hover" title="Twitter"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></a>
+              <a class="social-icon link-hover" title="Instagram"><fa-icon [icon]="['fab', 'instagram']"></fa-icon></a>
+              <a class="social-icon link-hover" title="Youtube"><fa-icon [icon]="['fab', 'youtube']"></fa-icon></a>
+              <a class="social-icon link-hover" title="Pinterest"><fa-icon [icon]="['fab', 'pinterest']"></fa-icon></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-selector" *ngIf="!loading && product">
+      <ul class="nav nav-pills nav-fill">
+        <li class="nav-item" [ngClass]="{'tab-active': tabActive === 1}" (click)="OpenTab(1)">
+          <a class="nav-link" >{{'Product.Description' | translate}}</a>
+        </li>
+        <li class="nav-item" [ngClass]="{'tab-active': tabActive === 2}" (click)="OpenTab(2)">
+          <a class="nav-link" >{{'Product.ShippingReturn' | translate}}</a>
+        </li>
+        <li class="nav-item" [ngClass]="{'tab-active': tabActive === 3}" (click)="OpenTab(3)">
+          <a class="nav-link" >{{'Product.Review.Reviews' | translate}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div #tabview id="tabview" @FatherTabAnimation>
+    <div class="tab" *ngIf="tabActive === 1" @TabFade>
+      <!-- <div class="desc-1 tab-part">
+        <div class="side-desc">
+          <div class="text-container">
+            <h4 class="desc-subtitle">Product Information</h4>
+            <ul>
+              <li>Faux suede fabric upper</li>
+              <li>Tie strap buckle detail</li>
+              <li>Block heel</li>
+              <li>Open toe</li>
+              <li>Heel Height: 7cm / 2.5 inches</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <div class="desc-2 tab-part">
+        <div class="row desc-row">
+          <div class="col-12 col-xxl-6">
+            <h4 class="desc-subtitle">Design</h4>
+            <p class="desc">The perfect choice for the summer months. These wedges are perfect for holidays and home, with the thick cross-over strap design and heel strap with an adjustable buckle fastening. Featuring chunky soles with an espadrille and cork-style wedge.</p>
+          </div>
+          <div class="col-12 col-xxl-6">
+            <h4 class="desc-subtitle">Fabric & care</h4>
+            <p class="desc">As part of our Forever Comfort collection, these wedges have ultimate cushioning with soft padding and flexi soles. Perfect for strolls into the old town on holiday or a casual wander into the village.</p>
+          </div>
+        </div>
+      </div>
+      <div class="desc-3 tab-part">
+        <div class="side-desc">
+          <div class="text-container">
+            <p class="par-1">“ Everything is important - <br>
+              that success is in the details. ”</p>
+            <p class="par-2">– Steve Jobs</p>
+            <p class="par-3">Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue.</p>
+          </div>
+        </div>
+      </div> -->
+      <div class="padding-tab">
+        <div *ngIf="product.longDescription" class="long-desc" [innerHTML]="product.longDescription"></div>
+        <div *ngIf="!product.longDescription" class="long-desc no-desc" ><p>{{'Product.NoDescription' | translate}} </p></div>
+      </div>
+    </div>
+    <div class="tab" *ngIf="tabActive === 2" @TabFade>
+      <div class="padding-tab">
+        <p class="delivery-title">{{'Product.DeleiveryReturn.DeleiveryReturn' | translate}}</p>
+        <p class="delivery-desc" [innerHTML]="'Product.DeleiveryReturn.Desc' | translate"></p>
+      </div>
+
+
+    </div>
+    <div class="tab" *ngIf="tabActive === 3" @TabFade >
+      <div class="padding-tab" >
+        <h4 class="review-count"> {{'Product.Review.Reviews' | translate}} ({{reviews && reviews.length > 0 ? reviews.length :0}})</h4>
+        <ng-container *ngFor="let rev of reviews">
+          <app-review (reviewFeedBackChange)="ReviewChange($event)" [productId]="this.id" [review]="rev"></app-review>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!loading && !product && productNotFound">
+  <div class="loader-container" >
+    <h5 class="main-color">{{'Error.PROD001' | translate}}</h5>
+  </div>
+</ng-container>
+
+
+
+<!-- NON UTILIZZATO PER IL MOMENTO
+<div class="prod-recommended custom-container" *ngIf="recommended && recommended.length > 0">
+  <app-recommended [recommended]="recommended"></app-recommended>
+</div>
+-->

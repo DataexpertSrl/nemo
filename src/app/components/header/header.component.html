@@ -1,0 +1,116 @@
+<div class="main custom-container">
+  <div class="action-container row" *ngIf="isToolbarInView">
+    <div ngbDropdown class="d-inline-block col-2 dd-link" #myDropLang="ngbDropdown" (mouseover)="myDropLang.open()" (mouseleave)="myDropLang.close()" >
+      <button type="button" class="btn btn-outline-primary dd-btn-trigger hover-color main-color" id="langselector" ngbDropdownToggle >
+        <img class="lang-flag" [src]="'assets/images/flags/' + selectedLang + '.jpg'">
+        <span>{{ selectedLang === 'it' ? 'Italiano': 'English' }}</span>
+      </button>
+      <div ngbDropdownMenu aria-labelledby="langselector" class="link-dd-custom" (mouseleave)="myDropLang.close()">
+        <div class="main-color link hover-color lang-link" *ngFor="let lang of translate.getLangs()" (click)="ChangeLang(lang)">
+          <img class="lang-flag" [src]="'assets/images/flags/' + lang + '.jpg'">
+          <span class="">{{ lang === 'it' ? 'Italiano': 'English' }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-8" *ngIf="!linkVisible">
+
+    </div>
+    <div class="right-action" [ngClass]="{'col-10': linkVisible, 'col-2': !linkVisible}">
+      <div class="row" >
+        <ng-container *ngIf="linkVisible" >
+          <div class="col-5 col-sm-5 col-md-5 col-xl-5 col-xxl-5"></div>
+          <div class="col-7 col-sm-7 col-md-7 col-xl-7 col-xxl-7">
+            <span class="action-btn hover-color main-color">
+              <a href="tel:0000000000" class="custom-link hover-color main-color" >
+                <fa-icon [icon]="['fas', 'phone']"></fa-icon>
+                <span class="">{{'Toolbar.Call' | translate}}: +000 000000</span>
+              </a>
+            </span>
+            <span class="action-btn mid-action-btn hover-color main-color">{{'Toolbar.AboutUs' | translate}}</span>
+            <span class="action-btn hover-color main-color" (click)="LoginOrMyAccount()">
+              <fa-icon [icon]="['fas', 'user']"></fa-icon>
+              <span class="ml-1" *ngIf="sharedService.userLoggedIn">{{'Toolbar.MyAccoynt' | translate}}</span>
+              <span class="ml-1" *ngIf="!sharedService.userLoggedIn">{{'Toolbar.Login' | translate}}</span>
+            </span>
+          </div>
+
+        </ng-container>
+        <ng-container *ngIf="!linkVisible">
+          <div ngbDropdown class="d-inline-block col-12 dd-link" #myDropLink="ngbDropdown" (mouseover)="myDropLink.open()" (mouseleave)="myDropLink.close()">
+            <button type="button" class="btn btn-outline-primary dd-btn-trigger hover-color main-color" id="link-btn" ngbDropdownToggle>
+              Links
+            </button>
+
+            <div ngbDropdownMenu aria-labelledby="link-btn" class="link-dd-custom" (mouseleave)="myDropLink.close()">
+              <p class="main-color link hover-color ">
+                <a href="tel:0000000000" class="custom-link hover-color main-color" >
+                  <fa-icon [icon]="['fas', 'phone']"></fa-icon>
+                  <span class="">{{'Toolbar.Call' | translate}}: +000 000000</span>
+                </a>
+              <p>
+              <p class="main-color link hover-color" > ABOUT US</p>
+              <p class="main-color link hover-color" (click)="LoginOrMyAccount()">
+                <fa-icon [icon]="['fas', 'user']"></fa-icon>
+                <span class="ml-1" *ngIf="sharedService.userLoggedIn">{{'Toolbar.MyAccoynt' | translate}}</span>
+                <span class="ml-1" *ngIf="!sharedService.userLoggedIn">{{'Toolbar.Login' | translate}}</span>
+              </p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="main-header row" >
+    <div class="logo-container "  [ngClass]="{'col-1': catRowVisible, 'col-4': ! catRowVisible}">
+      <fa-icon class="bars-icon" [icon]="['fas', 'bars']" *ngIf="!catRowVisible" (click)="OpenSidebar()"> </fa-icon>
+      <img class="logo" src="/assets/images/Logo_Nemo.png" (click)="GoHome()">
+    </div>
+
+    <div class="category-container col-10" *ngIf="catRowVisible">
+      <span class="category hover-color" [ngClass]="{'selected-cat': selectCat === cat.name}" *ngFor="let cat of categories" (click)="GoTo(cat)"> {{cat.name}}
+      </span>
+    </div>
+    <div *ngIf="!catRowVisible" class="col-5">
+
+    </div>
+    <div class=" cart-container "  [ngClass]="{'col-1': catRowVisible, 'col-3': !catRowVisible}" (mouseover)="cartDrop.open()" (mouseleave)="cartDrop.close()">
+      <div placement="bottom-end"  ngbDropdown #cartDrop="ngbDropdown"  >
+        <div class="cart" ngbDropdownToggle>
+          <fa-icon class="cart-icon" [icon]="['fas', 'shopping-cart']"> </fa-icon>
+          <div class="cart-counter" *ngIf="cart && cart.length > 0">
+            {{cart.length}}
+          </div>
+        </div>
+        <div placement="bottom-start" ngbDropdownMenu  class="cart-dd" (mouseleave)="cartDrop.close()">
+          <div class="row">
+            <ng-container *ngIf="cart">
+              <div class="list">
+                <div class="col-12 cart-item" *ngFor="let item of cart" (click)="GoProdDetail(item.productId); cartDrop.close(); $event.stopPropagation();">
+                  <div class="info">
+                    <p class="item-name ellipsis" title="{{item.name}}">{{item.name}}</p>
+                    <p class="item-quantity">{{item.quantity ? item.quantity : 1}} x {{GetPrice(item.price)| number : '1.2-2'}}€</p>
+                  </div>
+                  <div class="image-container">
+                    <img class="image" *ngIf="item.imageUrl" [src]="item.imageUrl" onerror="this.onerror=null; this.src ='assets/images/products/no-image-placeholder.jpg'">
+                    <img class="image" *ngIf="!item.imageUrl" src="/assets/images/products/no-image-placeholder.jpg">
+                    <fa-icon [ngClass]="{'disabled': disableChange}" (click)=" ChangeOrRemoveItem(item, true);  $event.stopPropagation();"  [icon]="['fas', 'times']" ></fa-icon>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div class="tot col-12">
+              <span class="text">{{'Cart.Total' | translate}}:</span>
+              <span>{{GetCartTotal() | number : '1.2-2'}}€</span>
+            </div>
+            <div class="btn-container col-12">
+              <button class="custom-btn cart-preview-btn" (click)="Goto('shopping/cart'); cartDrop.close(); $event.stopPropagation();">{{'Cart.ViewCart' | translate}}</button>
+              <button *ngIf="cart && cart.length > 0" class="custom-btn cart-preview-btn" (click)="Goto('shopping/checkout'); cartDrop.close(); ; $event.stopPropagation();">{{'Cart.Checkout' | translate}}
+                <fa-icon [icon]="['fas', 'arrow-right-long']"></fa-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

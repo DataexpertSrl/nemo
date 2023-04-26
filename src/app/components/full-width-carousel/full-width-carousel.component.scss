@@ -1,0 +1,90 @@
+@import '/src/app/shared/style-varibale.scss';
+
+fa-icon {
+  color: $light-gray;
+  font-size: 2rem;
+  margin-right: 1rem;
+
+  &:hover {
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+}
+
+.image-full-screen {
+  height: 100vh;
+  .close-col {
+    text-align: end;
+  }
+  .main-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    #prev-icon {
+      position: absolute;
+      left: 2rem;
+      z-index: 1000;
+      margin: 0;
+    }
+
+    #next-icon {
+      position: absolute;
+      right: 2rem;
+      z-index: 1000;
+      margin: 0;
+    }
+
+    .image-container {
+      height: 90vh;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .image {
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .image-desc {
+        display: flex;
+        justify-content: space-between;
+        padding: 0rem 0.2rem;
+        color: $light-gray;
+      }
+    }
+  }
+
+}
+
+
+// MEDIA QUERY
+@media screen and (max-width: 950px) {
+  #prev-icon {
+    color: $dark-gray;
+
+    &:hover {
+      color: $black;
+      transition: 0.5s;
+    }
+  }
+
+  #next-icon {
+    color: $dark-gray;
+    &:hover {
+      color: $black;
+      transition: 0.5s;
+    }
+  }
+}

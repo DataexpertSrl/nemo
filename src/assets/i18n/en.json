@@ -1,0 +1,304 @@
+{
+  "Filters": {
+    "Filters": "Filters",
+    "Category": "Category",
+    "Brand": "Brand",
+    "Sort": "Sort by",
+    "Price": "Price",
+    "PriceRange": "Price Range"
+  },
+  "Categories": {
+    "Category": "Category",
+    "All": "All",
+    "Furniture": "Furniture",
+    "Lighting": "Lighting",
+    "Accessories": "Accessories",
+    "Sales": "Sale"
+  },
+  "Sort": {
+    "Sort": "Sort by",
+    "latest": "Newness",
+    "lowest_price": "Price: Low to High",
+    "highest_price": "Price: High to Low"
+  },
+  "Toolbar": {
+    "Call": "Call",
+    "AboutUs": "About us",
+    "Login": "Login",
+    "MyAccoynt": "My Account"
+  },
+  "Footer": {
+    "UsefullLink": "Useful Links",
+    "AboutNemo": "About Nemo",
+    "HowToShop": "How to shop on Nemo",
+    "ContactUs": "Contact us",
+    "CustomerService": "Customer Service",
+    "PayMethod": "Payment Methods",
+    "MoneyBack": "Money-back guarntee!",
+    "Returns": "Returns",
+    "Shipping": "Shippig",
+    "Terms": "Terms and conditions",
+    "PrivacyPolicy": "Privacy Policy",
+    "MyAccount": "My Account",
+    "ViewCart": "View Cart",
+    "MyWishList": "My WishList",
+    "TrackOrder": "Track My Order",
+    "Help": "Help",
+    "SignIn": "Sign In",
+    "LogIn": "Log In"
+  },
+  "Product": {
+    "Action": {
+      "AddToCart": "Add to cart",
+      "Share": "Share",
+      "More": "More product"
+    },
+    "Info": {
+      "Sale": "Sale",
+      "OutOfStock": "Out of stock"
+    },
+    "Title": "Products list",
+    "Subtitle": "Shop",
+    "QuantityAbbreviation": "Qty",
+    "Description": "Description",
+    "ShippingReturn": "Shipping & Returns",
+    "Review": {
+      "Reviews": "Review",
+      "DaysAgo": "days ago",
+      "Helpful": "Helpful",
+      "Unhelpful": "Unhelpful"
+    },
+    "DeleiveryReturn": {
+      "DeleiveryReturn": "Delivery & returns",
+      "Desc": "We deliver to over 100 countries around the world. For full details of the delivery options we offer, please view our Delivery information <br> We hope you’ll love every purchase, but if you ever need to return an item you can do so within a month of receipt. For full details of how to make a return, please view <br> our Returns information"
+    },
+    "Recommened": {
+      "Title": "You May Also Like"
+    },
+    "Product": "Product",
+    "NoDescription": "No description available",
+    "List": "Product lists",
+    "NoProduct": "There are no products"
+  },
+  "Filter": {
+    "Clear": "Clean All"
+  },
+  "Shared": {
+    "BackToTop": "Back to Top",
+    "Of": "of",
+    "GenericError": "An error occurred while executing request"
+  },
+  "User": {
+    "SignIn": "Log In",
+    "Register": "Register",
+    "Login": "Log In",
+    "SignUp": "Sign up",
+    "SignUpOk": {
+      "Title": "Registration completed",
+      "Text": "Congratulation, you are registered! </br> You can now log in."
+    },
+    "ForgottenPassword": "Forgot password",
+    "EmailForgottenLinkSend": " The password reset email has been sent",
+    "EmailNotExist": "There are no users associated with this email"
+  },
+  "Login": {
+    "EmailNotValid": "Not a valid email",
+    "EmailRequired": "Email required",
+    "PwdReqired": "Password required",
+    "ErrorCredential": "Wrong Email or Password",
+    "ErrorSignIn": "Unable to signin"
+  },
+  "Cart": {
+    "Title": "Shopping cart",
+    "Price": "Price",
+    "Quantity": "Quantity",
+    "Total": "Total",
+    "GoCheckout": "Proceed to checkout",
+    "CartTotal": "Cart Total",
+    "SubTotal": "Subtotal",
+    "ChangeAddress": "Change address",
+    "ViewCart": "View cart",
+    "Checkout": "Checkout",
+    "SuccessfullyAdded": "Added to cart",
+    "SuccessfullyRemoved": "Item removed"
+  },
+  "MyAccount": {
+    "Title": "My Account",
+    "Orders": "Orders",
+    "ResetPassowrd": "Reset Password",
+    "SignOut": "Sign Out",
+    "Order": {
+      "NoOrders": "No order has been made yet",
+      "GoShop": "Go shop"
+    },
+    "ChangePassowrd": "Change Password",
+    "PassowrdForm": {
+      "Old": "Current password",
+      "New": "New password",
+      "Confirm": "Confirm new password",
+      "Required": "Field is required",
+      "Pattern": "Must contain at least one number, one uppercase, a lowercase letter, no white space and at least 8 characters",
+      "Mismatch": "Passwords did not match",
+      "PatternError": "Wrong format"
+    },
+    "PwdChangeOk": "Your password has been changed successfully"
+  },
+  "Error": {
+    "AUTH001": "The client_id is missing",
+    "AUTH002": "The grant_type must be 'password' or 'client_credentials' or 'refresh:token or is missing",
+    "AUTH003": "The client_secret is missing",
+    "AUTH004": "The refresh_token is missing",
+    "AUTH005": "The type of token passed is not correct for the requested operation",
+    "AUTH006": "The email is missing",
+    "AUTH007": "The password is missing",
+    "AUTH008": "Wrong username or password",
+    "AUTH009": "Refresh tokenexpires",
+    "AUTH010": "Username already exists",
+    "AUTH011": "Unauthorized",
+    "AUTH012": "Missing field new password",
+    "AUTH013": "Missing field confirm new password",
+    "AUTH014": "Password token expires",
+    "AUTH015": "Email already exists",
+    "AUTH016": "Wrong user password",
+    "PROD001": "Product not found",
+    "PROD002": "Product id is missing",
+    "PROD003": "Quantity must be greather then zero",
+    "PROD004": "Wrong min_price or max_price or sort_by",
+    "PROD005": "A maximum of 100 products can be requested per query",
+    "APP001": "Application is not found, wrong client_id",
+    "GEN": "An error occurred while executing request",
+    "SHIP001": "Wrong weight",
+    "SHIP002": "Wrong price",
+    "SHIP003": "Missing country code",
+    "SHIP004": "Missing ZIP code",
+    "DATE001": "Wrong \"date from\" format",
+    "DATE002": "Wrong \"date to\" format",
+    "ORDR001": "Order not found",
+    "PAY002.0": "The CF is not formally correct",
+    "PAY002.1": "Configuration not found",
+    "PAY002.2": "The Province field is 2 characters long",
+    "ADDR001": "Missing billing address",
+    "ADDR002": "Missing tax class",
+    "ADDR003": "Missing fiscal code",
+    "ADDR004": "Missing VAT number",
+    "ADDR005": "Missing name",
+    "ADDR006": "Missing surname",
+    "ADDR007": "Missing sdi code or pec email",
+    "ADDR008": "Missing email",
+    "ADDR009": "Missing business name",
+    "ADDR010": "Missing address",
+    "ADDR011": "Missing city",
+    "ADDR012": "Missing zip code",
+    "ADDR013": "Missing country code",
+    "ADDR014": "Missing province"
+  },
+  "Checkout": {
+    "Firstname": "First Name",
+    "LastName": "Last Name",
+    "CompanyName": "Name and Lastname / Company name",
+    "Optional": "Optional",
+    "Country": "Country",
+    "StreetAddress": "Street address",
+    "City": "Town / City",
+    "State": "State / County",
+    "Zip": "Postcode / ZIP",
+    "Phone": "Phone",
+    "Email": "Email",
+    "Notes": "Order notes",
+    "BillingDetails": "Billing Details",
+    "YourOrder": "Your Order",
+    "Checkout": "Checkout",
+    "NewAccount": "Create an account",
+    "DifferentAddress": "Invoice to a different address",
+    "StreetAddressInfoPlaceholder": "Appartments, suite, unit etc ...",
+    "StreetAddressPlaceholder": "House number and Street name",
+    "NotePlaceholder": "Notest about your order e.g. special notest for delivery",
+    "ShipmentDetail": "Shipment Detail",
+    "ShippingMethod": "Shipment method",
+    "PaymentMethod": "Payment method",
+    "Company": "Company",
+    "PhysicalPerson": "Physical person",
+    "EmailPEC": "Email PEC",
+    "SDIorPEC": "SDI code or Email PEC required",
+    "SDI": "SDI code",
+    "VATNumber": "VAT Number",
+    "CF": "CF",
+    "CompanyNameBilling": "Company name",
+    "RequestInvoice": "Issue an invoice",
+    "MaxLength": "Massimo {{legth}} caratteri"
+  },
+  "CheckOut": {
+    "CouponQuestion": "Have a coupon?",
+    "CouponClick": "Click here to enter your code"
+  },
+  "Orders": {
+    "Status": {
+      "OnHold": "On Hold",
+      "New": "New",
+      "PartiallyShipped": "Partially Shipped",
+      "Shipped": "Shipped",
+      "PartiallyRefunded": "Partially refunded",
+      "Refunded": "Refunded",
+      "Deleted": "Deleted",
+      "Failed": "Failed",
+      "Status": "Order status"
+    },
+    "OrderNumber": "Order number",
+    "OrderDate": "Order date",
+    "OrderAmount": "Total",
+    "Order": "Order",
+    "OrderDetail": {
+      "ShiipingInfo": "Shipping detail",
+      "BillingInfo": "Billing info",
+      "PaymentMethod": "Payment method",
+      "Orderdate": "Created on",
+      "Total": "Total",
+      "ProductTotal": "Products price",
+      "ShippingTotal": "Shipping fees",
+      "Recipeient": "Recipient",
+      "Address": "Address",
+      "Zip": "ZIP",
+      "Province": "State / County",
+      "City": "Town / City",
+      "Phone": "Phone",
+      "Undefined": "Not specified",
+      "NoProducts": "No products",
+      "Quantity": "Quantity",
+      "RequestOrder": "View order",
+      "OrderNotFound": "Order not found"
+    }
+  },
+  "Month": {
+    "0": "January",
+    "1": "February",
+    "2": "March",
+    "3": "April",
+    "4": "May",
+    "5": "June",
+    "6": "July",
+    "7": "August",
+    "8": "September",
+    "9": "October",
+    "10": "November",
+    "11": "December"
+  },
+  "Order": {
+    "OderDetail": {
+      "EmailRequired": "To view the order, you must enter the email address associated with the order"
+    }
+  },
+  "Payment": {
+    "Result": {
+      "NotHandled": "Unfulfilled payment status",
+      "NotFound": "Payment status not found",
+      "Inserted": "Payment entered",
+      "Refused": "Payment declined",
+      "Completed": "Payment completed",
+      "Refunded": "Payment refunded",
+      "Deleted": "Payment cancelled",
+      "Title": "Payment Status",
+      "Msg": "Back to Shopping",
+      "TryAgain": "Please try again"
+    }
+  }
+}

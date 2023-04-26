@@ -1,0 +1,44 @@
+@import '/src/app/shared/style-varibale.scss';
+
+.menu {
+  .menu-item {
+    font-weight: 400;
+    font-size: 1rem;
+    width: 100%;
+    margin: 0;
+    padding: 1rem 0rem;
+    border-bottom: solid 1px $light-gray;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    fa-icon {
+      margin-right: 0.5rem;
+
+    }
+  }
+  .menu-item-active {
+    color: $accent-color;
+  }
+}
+.active-view {
+  padding-top: 1rem;
+  min-height: 60vh;
+
+
+}
+.custom-btn {
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .text-center {
+    margin-left: 0.5rem;
+    .spinner-border {
+      width: 1rem;
+      height: 1rem;
+      font-size: 0.5rem;
+    }
+  }
+}

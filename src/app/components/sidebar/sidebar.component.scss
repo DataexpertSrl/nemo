@@ -1,0 +1,81 @@
+@import '/src/app/shared/style-varibale.scss';
+
+.sidebar {
+  background-color: #333333;
+  height: 100%;
+
+  .close-btn-container {
+    width: 100%;
+    text-align: end;
+    padding: 1.5rem;
+
+    fa-icon {
+      color: #fff;
+      &:hover {
+        color: $accent-color;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  .list-container {
+    width: 100%;
+    .accordion {
+      box-shadow: none ;
+      .accordion-item {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        .accordion-header {
+          box-shadow: none;
+          .accordion-button {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5 0.5rem;
+            color: #fff;
+            background-color: transparent ;
+            border: none;
+            box-shadow: none ;
+            border-bottom: solid 1px #434343 ;
+            .accordion-title {
+              text-transform: uppercase;
+            }
+          }
+          .accordion-button::after {
+            display: none;
+          }
+        }
+
+        .accordion-body {
+          .subcat {
+            color: #bfbfbf;
+            font-size: 0.8rem;
+            padding: 0.5rem 0rem 0.5rem 2rem;
+
+            &:hover {
+              color: $accent-color !important;
+            }
+          }
+        }
+
+        &:hover {
+          .accordion-header {
+            .accordion-button {
+              color: $accent-color !important;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+.active {
+  color: $accent-color !important;
+}
+
+.border-top {
+  border-top: solid 1px #434343 !important;
+}

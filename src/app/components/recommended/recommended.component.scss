@@ -1,0 +1,37 @@
+@import '/src/app/shared/style-varibale.scss';
+.title {
+  text-align: center;
+  color: $black;
+  margin-bottom: 1rem;
+}
+.recommended-carousel {
+  // margin-left: -5.5%;
+  // margin-right: -5.5%;
+  display: flex;
+  .custom-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $dark-gray;
+    width: 5%;
+    font-size: 1.5rem;
+    padding: 0 !important;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .carousel-col {
+    width: 90%;
+
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .custom-icon {
+    display: none !important;
+  }
+  .carousel-col {
+    width: 100% !important;
+  }
+}

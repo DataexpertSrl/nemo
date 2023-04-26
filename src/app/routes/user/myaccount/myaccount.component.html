@@ -1,0 +1,55 @@
+<div class="component-container">
+  <div class="component-title">
+    <div class="text-conatier">
+      <h4 class="title">{{'MyAccount.Title' | translate}}</h4>
+      <p class="sub-title">{{'Product.Subtitle' | translate}}</p>
+    </div>
+  </div>
+</div>
+<div class="custom-container">
+  <div class="row">
+    <div class="col-12 col-md-4 col-lg-3 menu">
+      <h5 class="link-hover menu-item" [ngClass]="{'menu-item-active': activeView === 0}" (click)="SwitchView(0)">
+        <fa-icon class="arrow-animated" *ngIf="activeView === 0" @SlideIn [icon]="['fas', 'arrow-right-long']">
+        </fa-icon>
+        {{'MyAccount.Orders' | translate}}
+      </h5>
+      <h5 class="link-hover menu-item" [ngClass]="{'menu-item-active': activeView === 1}" (click)="SwitchView(1)">
+        <fa-icon class="arrow-animated" *ngIf="activeView === 1" @SlideIn [icon]="['fas', 'arrow-right-long']">
+        </fa-icon>
+        {{'MyAccount.ChangePassowrd' | translate}}
+      </h5>
+      <h5 class="link-hover menu-item" (click)="SignOut()">{{'MyAccount.SignOut' | translate}}</h5>
+    </div>
+    <div class="col-12 col-md-8 col-lg-9 active-view">
+      <ng-container *ngIf="activeView === 0">
+        <app-order-list></app-order-list>
+      </ng-container>
+      <ng-container *ngIf="activeView === 1">
+        <div class="form-container">
+          <form class="form" [formGroup]="changePassword" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <app-password-input [formGroup]="changePassword" [control]="oldPwd" [controlName]="'OldPwd'" [label]="('MyAccount.PassowrdForm.Old' | translate)  + ' *'"></app-password-input>
+            </div>
+            <div class="mb-3">
+              <app-password-input [formGroup]="changePassword" [control]="newPwd" [controlName]="'NewPwd'" [label]="('MyAccount.PassowrdForm.New' | translate)  + ' *'"></app-password-input>
+            </div>
+            <div class="mb-3">
+              <app-password-input [formGroup]="changePassword" [control]="confirmPwd" [controlName]="'ConfirmPwd'" [label]="('MyAccount.PassowrdForm.Confirm' | translate)  + ' *'"></app-password-input>
+            </div>
+            <div class="btn-container">
+              <button type="submit" [ngClass]="{'custom-btn-disabled': changePassword.invalid}" [disabled]="changePassword.invalid" class="custom-btn">
+                <span>{{'MyAccount.ChangePassowrd' | translate}}</span>
+                <div class="text-center" *ngIf="loading">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+                </button>
+            </div>
+          </form>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

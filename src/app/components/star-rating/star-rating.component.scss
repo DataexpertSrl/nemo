@@ -1,0 +1,22 @@
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .rating-icon {
+    margin-right: 0.2rem;
+
+  }
+  .editable {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .accent {
+    color: #fcb941;
+  }
+  .gray {
+    color: #cccccc;
+  }
+}

@@ -1,0 +1,114 @@
+@import '/src/app/shared/style-varibale.scss';
+
+.orders-container {
+  width: 100%;
+  // min-height: 35vh;
+
+  .loader-container {
+    width: 100%;
+    height: 59vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .no-orders {
+    .no-order-text {
+      margin-bottom: 0.5rem;
+    }
+    .custom-btn {
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      fa-icon {
+        margin-left: 0.5rem;
+      }
+      .text-center {
+        margin-left: 0.5rem;
+        .spinner-border {
+          width: 1rem;
+          height: 1rem;
+          font-size: 0.5rem;
+        }
+      }
+    }
+  }
+  .orders {
+    //padding: 0.2rem;
+    height: 60vh;
+    .list-container {
+
+      height: 57.5vh;
+      .cdk-virtual-scroll-content-wrapper {
+        padding: 0.2rem !important;
+      }
+      .order {
+        margin-bottom: 0.5rem;
+        padding: 1rem;
+        box-shadow: 0px 0px 1px 2px rgb(51, 51, 51, 0.03);
+        border: solid 0.5px transparent;
+        .row {
+          .order-number {
+            color: $black;
+            font-weight: 500;
+            max-width: 100%;
+            text-align: start;
+          }
+          .order-date {
+            color: light-gray2 !important;
+            max-width: 100%;
+            text-align: center;
+          }
+          .order-stuatus {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .order-amount {
+            color: $black !important;
+            font-weight: 500;
+            max-width: 100%;
+            text-align: end;
+          }
+        }
+        &:hover {
+          border-color: $accent-color !important;
+          box-shadow: 0px 0px 1px 2px rgba(47, 203, 164, 0.37) !important;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .loader-more-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background-color: transparent;
+      bottom: 20rem;
+    }
+  }
+}
+
+
+@media screen and (max-width: 990px) {
+  .orders {
+    .order {
+      .row {
+        .order-stuatus {
+          margin-top: 0.5rem !important;
+          margin-bottom: 0.5rem !important;
+        }
+        .order-amount {
+          width: 100% !important;
+          text-align: center !important;
+        }
+        .order-date {
+          text-align: end !important;
+        }
+      }
+    }
+  }
+}

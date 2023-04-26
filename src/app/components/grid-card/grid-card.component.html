@@ -1,0 +1,27 @@
+<div class="product-item" [ngClass]="{'prodcut-min': minview}"  *ngIf="product "  (mouseover)="OverProd(product.id) "(mouseleave)="OverProd(undefined)" (click)="GoToDetail(product.id)">
+  <div class="product" >
+    <!-- <div class="product-info-overlay" *ngIf="product.visible && product.startSalePrice && product.endSalePrice" > {{'Product.Info.Sale' | translate}}</div>
+    <div class="product-info-overlay" *ngIf="product.visible && product.quantity <= 0">{{'Product.Info.OutOfStock' | translate}}</div> -->
+    <figure class="product-media">
+      <img *ngIf="product.thumbnail" [src]="product.thumbnail" alt="Product image" class="product-image" onerror="this.onerror=null;this.src = 'assets/images/products/no-image-placeholder.jpg'">
+      <img *ngIf="!product.thumbnail" src="/assets/images/products/no-image-placeholder.jpg" alt="Product image" class="product-image" >
+      <div class="product-action" *ngIf="overProduct === product.id" @SlideInOut  (click)="AddToCart(); $event.stopPropagation();">
+        <div class="btn-product btn-cart"><span>{{'Product.Action.AddToCart' | translate}}</span>  <fa-icon [icon]="['fas', 'cart-plus']"></fa-icon></div>
+      </div>
+    </figure>
+    <div class="product-body">
+      <h3 class="product-title link-hover ellipsis" title="{{product.name}}"> {{product.name}}</h3>
+      <div class="product-price">
+        <!-- <div class="price"  [ngClass]="{'sale-price' : product.startSalePrice && product.endSalePrice && product.salePrice,
+                                        'os-price': product.quantity <= 0}">
+          <span [ngClass]="{'price-cut': product.startSalePrice && product.endSalePrice && product.salePrice}">{{GetPrice(product.price) | number : '1.2-2'}} €</span>
+          <span *ngIf="product.startSalePrice && product.endSalePrice && product.salePrice">{{product.salePrice | number : '1.2-2'}} €</span>
+        </div> -->
+        <div class="product-price">
+          <div class="price">
+            <span>{{GetPrice(product.price) | number : '1.2-2'}} €</span>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

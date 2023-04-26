@@ -1,0 +1,39 @@
+<div class="sidebar">
+
+  <div class="close-btn-container">
+    <fa-icon (click)="OpenSidebar()" [icon]="['fas', 'times']" ></fa-icon>
+  </div>
+  <div class="list-container">
+    <div class="accordion accordion-flush" id="accordionFlush" >
+      <div class="accordion-item" [ngClass]="{'border-top': accordionOpen === i - 1}" *ngFor="let cat of categories; let i = index">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed"
+                  type="button" data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#flush-collapse' + i"
+                  aria-expanded="false"
+                  (click)="OpenClose(cat)">
+            <span class="accordion-title" [ngClass]="{'active': accordionOpen === i}" (click)="NavigateToList(cat.route); $event.stopPropagation();">{{cat.name}}</span>
+            <!-- <ng-container *ngIf="cat.subcategory && cat.subcategory.length > 0">
+              <fa-icon *ngIf="accordionOpen === i" [icon]="['fas', 'chevron-up']"></fa-icon>
+              <fa-icon *ngIf="accordionOpen !== i" [icon]="['fas', 'chevron-down']"></fa-icon>
+            </ng-container> -->
+          </button>
+        </h2>
+        <!-- <div id="{{'flush-collapse' + i}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+          <div class="accordion-body">
+            <div class="subcat" *ngFor="let sCat of cat.subcategory">
+              {{sCat.name}}
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="social-icons">
+    <a class="social-icon link-hover" title="Facebook"> <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon></a>
+    <a class="social-icon link-hover" title="Twitter"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></a>
+    <a class="social-icon link-hover" title="Instagram"><fa-icon [icon]="['fab', 'instagram']"></fa-icon></a>
+    <a class="social-icon link-hover" title="Youtube"><fa-icon [icon]="['fab', 'youtube']"></fa-icon></a>
+    <a class="social-icon link-hover" title="Pinterest"><fa-icon [icon]="['fab', 'pinterest']"></fa-icon></a>
+  </div>
+</div>

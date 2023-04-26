@@ -1,0 +1,8 @@
+<ng-container *ngIf="status !== null && status !== undefined">
+  <span class="status-badge" title="{{'Orders.Status.Status' | translate}}: {{'Orders.Status.' + statusEnum[status] | translate}}"
+  [ngClass]="{'onHold': status === statusEnum.OnHold, 'new': status === statusEnum.New, 'partiallyShipped': status === statusEnum.PartiallyShipped,
+    'shipped': status === statusEnum.Shipped, 'partiallyRefunded': status === statusEnum.PartiallyRefunded, 'refunded': status === statusEnum.Refunded,
+    'deleted': status === statusEnum.Deleted, 'failed': status === statusEnum.Failed}">
+    {{'Orders.Status.' + statusEnum[status] | translate}}
+  </span>
+</ng-container>

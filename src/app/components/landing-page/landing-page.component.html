@@ -1,0 +1,85 @@
+<div class="landing-page">
+  <div class="card">
+    <ng-container *ngIf="isUserActionLandingPage">
+      <div class="card-header">
+        <h4 *ngIf="token" class="landing-title">{{'MyAccount.ResetPassowrd' | translate}}</h4>
+        <h4 *ngIf="!token" class="landing-title">{{'User.SignUpOk.Title' | translate}}</h4>
+      </div>
+      <div class="card-body">
+        <ng-container *ngIf="token && !changeSuccess">
+          <div class="form-container">
+            <form class="form" [formGroup]="changePassword" (ngSubmit)="onSubmit()">
+              <div class="form-body">
+                <div class="mb-3">
+                  <app-password-input [formGroup]="changePassword" [control]="newPwd" [controlName]="'NewPwd'" [label]="('MyAccount.PassowrdForm.New' | translate) + ' *'"></app-password-input>
+                </div>
+                <div class="mb-3">
+                  <app-password-input [formGroup]="changePassword" [control]="confirmPwd" [controlName]="'ConfirmPwd'" [label]="('MyAccount.PassowrdForm.Confirm' | translate) + ' *'"></app-password-input>
+                </div>
+              </div>
+
+              <div class="button-container">
+                <button type="submit" [ngClass]="{'custom-btn-disabled': changePassword.invalid || !token}"
+                  [disabled]="changePassword.invalid || !token" class="custom-btn">
+                  <span>{{'MyAccount.ChangePassowrd' | translate}}</span>
+                  <div class="text-center" *ngIf="loading">
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </form>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!token || changeSuccess">
+          <div class="body-container">
+            <p *ngIf="!token" class="main-color" [innerHTML]="'User.SignUpOk.Text' | translate"></p>
+            <p *ngIf="changeSuccess" class="main-color"> {{'MyAccount.PwdChangeOk' | translate }}</p>
+            <div class="button-container">
+              <button (click)="GoToLogin()" class="custom-btn">
+                <span>
+                  {{'User.Login' | translate}}
+                </span>
+                <fa-icon [icon]="['fas', 'arrow-right-long']"></fa-icon>
+              </button>
+            </div>
+          </div>
+
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!isUserActionLandingPage">
+      <div class="card-header">
+        <h4 class="landing-title status" [ngClass]="{'error': !paymentSuccessStatus, 'success': paymentSuccessStatus}">{{'Payment.Result.' + paymentResult | translate}}</h4>
+      </div>
+      <div class="card-body">
+        <div class="body-container">
+          <ng-container *ngIf="paymentSuccessStatus">
+            <p class="main-color status-msg" [innerHTML]="'Payment.Result.Msg' | translate"></p>
+            <div class="button-container">
+              <button (click)="Navigate('/product/list/all')" class="custom-btn">
+                <span>
+                  {{'Product.List' | translate}}
+                </span>
+                <fa-icon [icon]="['fas', 'arrow-right-long']"></fa-icon>
+              </button>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!paymentSuccessStatus">
+            <p class="main-color status-msg" [innerHTML]="'Payment.Result.TryAgain' | translate"></p>
+            <div class="button-container">
+              <button (click)="Navigate('/shopping/checkout')" class="custom-btn">
+                <span>
+                  {{'Cart.Checkout' | translate}}
+                </span>
+                <fa-icon [icon]="['fas', 'arrow-right-long']"></fa-icon>
+              </button>
+            </div>
+          </ng-container>
+
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
