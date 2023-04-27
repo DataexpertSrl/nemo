@@ -1,3 +1,5 @@
+![](https://reshark.eu/wp-content/uploads/2023/02/Reshark_black_headless.png)
+
 # Nemo
 Reshark headless e-commerce
 
@@ -18,7 +20,7 @@ The permissions you're granted authenticating with that token are determined by 
 Two different types of applications are currently available in order to get your credentials: **head channel** and **server integration.**
 Which one to use will depend on the specific use case and requirements.
 
-### Head c**hannel**
+### **Head channel**
 
 **Head channel** applications are used to build any customer storefront with a fully-functional shopping cart and checkout flow.
 
@@ -32,7 +34,7 @@ Head channels require a **brand** associated with the given client ID when reque
 
 Using a head channel is the most straightforward way to build your customer frontend e-commerce. Anyway, if you want to have complete control over the grants brought to the access tokens, you can always use a *server integration*. Just make sure not to expose the secret on the client, by building a dedicated *backend for frontend* (BFF), or properly leveraging serverless functions.
 
-### S**erver integration**
+### **Server integration**
 
 **Server integration** applications are used to develop backend integrations with any 3rd-party system.
 Server integrations provide *confidential* API credentials. They need a **client ID** and a **client secret** to authenticate.
